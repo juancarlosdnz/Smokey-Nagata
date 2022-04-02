@@ -10,6 +10,7 @@ const Game = {
     cops: [],
     car: undefined,
     background: undefined,
+    enemy: undefined,
 
     init(canvasID) {
         this.canvasNode = document.querySelector(`#${canvasID}`)
@@ -20,6 +21,7 @@ const Game = {
         this.setEventListeners()
         this.createBackground()
         this.createCar()
+        this.createEnemy()
         // this.createCop()
         this.start()
     },
@@ -37,7 +39,9 @@ const Game = {
     createBackground() {
         this.background = new Background(this.ctx, this.gameSize, this.gameSize.width, this.gameSize.height)
     },
-    createCop() { },
+    createEnemy() {
+        this.enemy = new Enemy(this.ctx, 15, 15, 100, 50, this.car.carPos.x, this.car.carPos.y)
+    },
 
     createBullet() { },
 
@@ -50,7 +54,7 @@ const Game = {
     drawAll() {
         this.background.drawBackground()
         this.car.drawCar()
-        console.log(this.gameSize.width)
+        this.enemy.drawEnemy()
     },
 
     setEventListeners() {
