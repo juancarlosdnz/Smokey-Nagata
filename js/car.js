@@ -1,8 +1,11 @@
 class Car {
-    constructor(ctx, carPosX, carPosY, carWidth, carHeight) {
+    constructor(ctx, carPosX, carPosY, carWidth, carHeight, gameSize, gameSizeWidth, gameSizeHeight) {
         this.ctx = ctx
+        this.gameSize = gameSize
+        this.gameSize = { width: gameSizeWidth, height: gameSizeHeight }
         this.carPos = { x: carPosX, y: carPosY }
         this.carSize = { width: carWidth, height: carHeight }
+
         this.imageInstance = undefined
         this.init()
 
@@ -14,21 +17,26 @@ class Car {
     }
 
     drawCar() {
-        console.log(this.ctx.drawImage(this.imageInstance, this.carPos.x, this.carPos.y, this.carSize.width, this.carSize.height))
+        this.ctx.drawImage(this.imageInstance, this.carPos.x, this.carPos.y, this.carSize.width, this.carSize.height)
     }
     moveLeft() {
-        this.carPos.x -= 30
+        this.carPos.x -= 12
+
     }
     moveRight() {
-        this.carPos.x += 30
+        this.carPos.x += 12
+
     }
     moveUp() {
-        this.carPos.y -= 30
+        this.carPos.y -= 12
     }
     moveDown() {
-        this.carPos.y += 30
+        this.carPos.y += 12
     }
-    
+    stayStill() {
+        this.carPos.x -= 14
+    }
+
 
 
 
