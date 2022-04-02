@@ -55,7 +55,7 @@ const Game = {
         this.background.drawBackground()
         this.car.drawCar()
         this.enemy.drawEnemy()
-        this.enemy.carTracking()
+        this.enemy.carTracking(this.car.carPos.x, this.car.carPos.y)
     },
 
     setEventListeners() {
