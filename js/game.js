@@ -29,7 +29,7 @@ const Game = {
         this.car = new Car(this.ctx, this.gameSize.width / 2 - 200, this.gameSize.height / 2, 200, 70)
     },
     createBackground() {
-        this.background = new Background(this.ctx,this.gameSize, this.gameSize.width, this.gameSize.height)
+        this.background = new Background(this.ctx, this.gameSize, 3000, 1000)
     },
     createCop() { },
 
@@ -57,8 +57,29 @@ const Game = {
     },
 
     setEventListeners() {
-
-    }, //crontoles de acciones del videojuego
+        document.onkeydown = event => {
+            if (event.code === 'ArrowUp') this.car.moveUp()
+            if (event.code === 'ArrowDown') this.car.moveDown()
+            if (event.code === 'ArrowLeft') this.car.moveLeft()
+            if (event.code === 'ArrowRight') this.car.moveRight()
+            if (event.code === 'ArrowRight' && 'ArrowUp') {
+                this.car.moveRight()
+                this.car.moveUp()
+            }
+            if (event.code === 'ArrowRight' && 'ArrowDown') {
+                this.car.moveRight()
+                this.car.moveDown()
+            }
+            if (event.code === 'ArrowLeft' && 'ArrowUp') {
+                this.car.moveLeft()
+                this.car.moveUp()
+            }
+            if (event.code === 'ArrowLeft' && 'ArrowDown') {
+                this.car.moveLeft()
+                this.car.moveDown()
+            }
+        }
+    },
 
     clearAll() {
         this.ctx.clearRect(0, 0, this.gameSize.w, this.gameSize.h)

@@ -1,5 +1,5 @@
 class Car {
-    constructor(ctx,carPosX, carPosY, carWidth, carHeight) {
+    constructor(ctx, carPosX, carPosY, carWidth, carHeight) {
         this.ctx = ctx
         this.carPos = { x: carPosX, y: carPosY }
         this.carSize = { width: carWidth, height: carHeight }
@@ -17,17 +17,18 @@ class Car {
         console.log(this.ctx.drawImage(this.imageInstance, this.carPos.x, this.carPos.y, this.carSize.width, this.carSize.height))
     }
     moveLeft() {
-
+        this.carPos.x -= 30
     }
-    moveRigth() {
-
+    moveRight() {
+        this.carPos.x += 30
     }
     moveUp() {
-
+        this.carPos.y -= 30
     }
     moveDown() {
-
+        this.carPos.y += 30
     }
+    
 
 
 
