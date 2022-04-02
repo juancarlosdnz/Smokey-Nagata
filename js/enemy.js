@@ -18,23 +18,20 @@ class Enemy {
         this.ctx.drawImage(this.imageInstance, this.enemyPos.x, this.enemyPos.y, this.enemySize.width, this.enemySize.height)
         console.log(this.enemyPos.carPosX)
     }
-    move() {
-        this.enemyPos.x++
-    }
     carTracking() {
         if (this.carPosX > this.enemyPos.x && this.carPosY > this.enemyPos.y) {
             console.log('estoy dentro')
-            this.enemyPos.x + 8
-            this.enemyPos.y + 8
+            this.enemyPos.x += 8
+            this.enemyPos.y += 8
         } else if (this.carPosX > this.enemyPos.x && this.carPosY < this.enemyPos.y) {
-            this.enemyPos.x + 8
-            this.enemyPos.y - 8
+            this.enemyPos.x += 8
+            this.enemyPos.y -= 8
         } else if (this.carPosX < this.enemyPos.x && this.carPosY > this.enemyPos.y) {
-            this.enemyPos.x - 8
-            this.enemyPos.y + 8
+            this.enemyPos.x -= 8
+            this.enemyPos.y += 8
         } else if (this.carPosX < this.enemyPos.x && this.carPosY < this.enemyPos.y) {
-            this.enemyPos.x - 8
-            this.enemyPos.y - 8
+            this.enemyPos.x -= 8
+            this.enemyPos.y -= 8
         }
     }
 }
