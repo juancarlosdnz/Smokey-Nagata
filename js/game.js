@@ -26,10 +26,10 @@ const Game = {
     },
 
     createCar() {
-        this.car = new Car(this.ctx,this.gameSize.width / 2 - 200, this.gameSize.height / 2, 200, 70)
+        this.car = new Car(this.ctx, this.gameSize.width / 2 - 200, this.gameSize.height / 2, 200, 70)
     },
     createBackground() {
-        this.background = new Background(this.ctx, this.gameSize.width, this.gameSize.height)
+        this.background = new Background(this.ctx,this.gameSize, this.gameSize.width, this.gameSize.height)
     },
     createCop() { },
 
@@ -43,7 +43,7 @@ const Game = {
 
     drawAll() {
         this.background.drawBackground()
-       console.log(this.car.drawCar())
+        this.car.drawCar()
     },
 
 
@@ -58,8 +58,11 @@ const Game = {
 
     setEventListeners() {
 
-
     }, //crontoles de acciones del videojuego
+
+    clearAll() {
+        this.ctx.clearRect(0, 0, this.gameSize.w, this.gameSize.h)
+    },
 
 
     start() {
@@ -70,9 +73,5 @@ const Game = {
     },
 
 
-
-    clearAll() {
-        this.ctx.clearRect(0, 0, this.gameSize.w, this.gameSize.h)
-    },
 
 }
