@@ -9,7 +9,7 @@ class Background {
     }
     init() {
         this.imageInstance = new Image()
-        this.imageInstance.src = "./img/cars.jpg"
+        this.imageInstance.src = "./img/blackwp.jpg"
 
     }
     drawBackground() {

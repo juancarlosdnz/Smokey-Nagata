@@ -1,5 +1,5 @@
 class Car {
-    constructor(ctx, carPosX, carPosY, carWidth, carHeight, gameSize, gameSizeWidth, gameSizeHeight) {
+    constructor(ctx, carPosX, carPosY, carWidth, carHeight, gameSize, gameSizeWidth, gameSizeHeight,direction) {
         this.ctx = ctx
         this.gameSize = gameSize
         this.gameSize = { width: gameSizeWidth, height: gameSizeHeight }
@@ -7,6 +7,7 @@ class Car {
         this.carSize = { width: carWidth, height: carHeight }
         this.bullets = []
         this.imageInstance = undefined
+        this.direction=direction
         this.init()
 
 

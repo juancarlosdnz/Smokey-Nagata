@@ -11,8 +11,9 @@ const Game = {
     car: undefined,
     background: undefined,
     enemy: undefined,
-    bullet: undefined,
+    bullets: [],
     frameIndex: 0,
+    direction :undefined,
 
     init(canvasID) {
         this.canvasNode = document.querySelector(`#${canvasID}`)
@@ -38,7 +39,7 @@ const Game = {
         this.canvasNode.setAttribute('height', this.gameSize.height)
     },
     createCar() {
-        this.car = new Car(this.ctx, this.gameSize.width / 2 - 200, this.gameSize.height / 2, 100, 50, this.gameSize, this.gameSize.width, this.gameSize.height)
+        this.car = new Car(this.ctx, this.gameSize.width / 2 - 200, this.gameSize.height / 2, 100, 50, this.gameSize, this.gameSize.width, this.gameSize.height,this.direction)
     },
     createBackground() {
         this.background = new Background(this.ctx, this.gameSize, this.gameSize.width, this.gameSize.height)
@@ -97,8 +98,30 @@ const Game = {
                     this.car.moveRight()
                 }
             }
-        }
-    },
+        
+            if (event.code === 'KeyW') {
+                    this.direction = 'up'
+                }
+            if (event.code === 'KeyS') {
+                    console.log('S')
+                    this.direction = 'down'
+                    this.direction
+                }
+            if (event.code === 'KeyD') {
+                    console.log('D')
+                    this.direction = 'right'
+                    this.direction
+                }
+            if (event.code === 'KeyA') {
+                    console.log('A')
+                    this.direction = 'left'
+                }
+            }
+            return this.direction
+
+        },
+
+    
 
     clearAll() {
         this.ctx.clearRect(0, 0, this.gameSize.w, this.gameSize.h)
