@@ -5,7 +5,7 @@ class Car {
         this.gameSize = { width: gameSizeWidth, height: gameSizeHeight }
         this.carPos = { x: carPosX, y: carPosY }
         this.carSize = { width: carWidth, height: carHeight }
-
+        this.bullets = []
         this.imageInstance = undefined
         this.init()
 
@@ -18,7 +18,10 @@ class Car {
 
     drawCar() {
         this.ctx.drawImage(this.imageInstance, this.carPos.x, this.carPos.y, this.carSize.width, this.carSize.height)
+        this.bullets.forEach(bullet => bullet.drawBullet(this.setEventListeners()))
+
     }
+
     moveLeft() {
         this.carPos.x -= 24
 

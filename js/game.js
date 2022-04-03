@@ -26,7 +26,7 @@ const Game = {
 
         this.createCar()
         this.createEnemy()
-            // this.createCop()
+        // this.createCop()
         this.start()
     },
     setDimensions() {
@@ -51,11 +51,11 @@ const Game = {
         this.bullet = new Bullet(this.ctx, 100, 100, 30, 30)
     },
 
-    checkColisions() {},
+    checkColisions() { },
 
-    gameOver() {},
+    gameOver() { },
 
-    checkGameOver() {},
+    checkGameOver() { },
 
     drawAll() {
         this.background.drawBackground()
@@ -96,18 +96,6 @@ const Game = {
                 } else {
                     this.car.moveRight()
                 }
-            }
-            if (event.code === 'KeyW') {
-                this.bullet.shootUp()
-            }
-            if (event.code === 'KeyS') {
-                this.bullet.shootDown()
-            }
-            if (event.code === 'KeyD') {
-                this.bullet.shootRight()
-            }
-            if (event.code === 'KeyS') {
-                this.bullet.shootDown()
             }
         }
     },
