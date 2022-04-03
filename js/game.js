@@ -12,6 +12,7 @@ const Game = {
     background: undefined,
     enemy: undefined,
     bullet: undefined,
+    frameIndex: 0,
 
     init(canvasID) {
         this.canvasNode = document.querySelector(`#${canvasID}`)
@@ -95,6 +96,18 @@ const Game = {
                 } else {
                     this.car.moveRight()
                 }
+            }
+            if (event.code === 'KeyW') {
+                this.bullet.shootUp()
+            }
+            if (event.code === 'KeyS') {
+                this.bullet.shootDown()
+            }
+            if (event.code === 'KeyD') {
+                this.bullet.shootRight()
+            }
+            if (event.code === 'KeyS') {
+                this.bullet.shootDown()
             }
         }
     },
