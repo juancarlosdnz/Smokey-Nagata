@@ -40,7 +40,7 @@ const Game = {
         this.background = new Background(this.ctx, this.gameSize, this.gameSize.width, this.gameSize.height)
     },
     createEnemy() {
-        this.enemy = new Enemy(this.ctx, 15, 15, 100, 50, this.car.carPos.x, this.car.carPos.y)
+        this.enemy = new Enemy(this.ctx, -40, 200, 100, 50, this.car.carPos.x, this.car.carPos.y)
     },
 
     createBullet() { },

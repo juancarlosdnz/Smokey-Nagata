@@ -33,9 +33,15 @@ class Enemy {
             this.enemyPos.x -= 2
             this.enemyPos.y -= 2
         }
-        else if (carCurrentY = this.enemyPos.y) {
-            this.enemyPosY=carCurrentY
+        else if (carCurrentY = this.enemyPos.y && carCurrentX>this.enemyPos.x) {
+            this.enemyPosY = carCurrentY
             this.enemyPos.x += 4
+
+        }
+        else if (carCurrentY = this.enemyPos.y && carCurrentX < this.enemyPos.x) {
+            this.enemyPosY = carCurrentY
+            this.enemyPos.x -= 4
+
         }
 
     }
