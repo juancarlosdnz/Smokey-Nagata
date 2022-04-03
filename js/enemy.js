@@ -16,30 +16,38 @@ class Enemy {
     }
     drawEnemy() {
         this.ctx.drawImage(this.imageInstance, this.enemyPos.x, this.enemyPos.y, this.enemySize.width, this.enemySize.height)
-        console.log(this.enemyPos.carPosX)
     }
     carTracking(carCurrentX, carCurrentY) {
         if (carCurrentX > this.enemyPos.x && carCurrentY > this.enemyPos.y) {
-            console.log('estoy dentro')
-            this.enemyPos.x += 2
-            this.enemyPos.y += 2
+            this.enemyPos.x += 3
+            this.enemyPos.y += 3
         } else if (carCurrentX > this.enemyPos.x && carCurrentY < this.enemyPos.y) {
-            this.enemyPos.x += 2
-            this.enemyPos.y -= 2
+            this.enemyPos.x += 3
+            this.enemyPos.y -= 3
         } else if (carCurrentX < this.enemyPos.x && carCurrentY > this.enemyPos.y) {
-            this.enemyPos.x -= 2
-            this.enemyPos.y += 2
+            this.enemyPos.x -= 3
+            this.enemyPos.y += 3
         } else if (carCurrentX < this.enemyPos.x && carCurrentY < this.enemyPos.y) {
-            this.enemyPos.x -= 2
-            this.enemyPos.y -= 2
+            this.enemyPos.x -= 3
+            this.enemyPos.y -= 3
         }
-        else if (carCurrentY = this.enemyPos.y && carCurrentX>this.enemyPos.x) {
+        else if (carCurrentY == this.enemyPos.y && carCurrentX>this.enemyPos.x) {
             this.enemyPos.x += 4
 
         }
-        else if (carCurrentY = this.enemyPos.y && carCurrentX < this.enemyPos.x) {
+        else if (carCurrentY == this.enemyPos.y && carCurrentX < this.enemyPos.x) {
             this.enemyPos.x -= 4
 
+        }
+        else if(carCurrentX == this.enemyPos.x && carCurrentY < this.enemyPos.y){
+            this.enemyPos.y-=3
+        }
+        else if (carCurrentX == this.enemyPos.x && carCurrentY > this.enemyPos.y) {
+            this.enemyPos.y+=3
+        }
+        else if(carCurrentX ==this.enemyPos.x && carCurrentY==this.enemyPos.y){
+            this.enemyPos.y+=0
+            this.enemyPos.x+=0
         }
 
     }

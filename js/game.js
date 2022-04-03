@@ -34,7 +34,7 @@ const Game = {
         this.canvasNode.setAttribute('height', this.gameSize.height)
     },
     createCar() {
-        this.car = new Car(this.ctx, this.gameSize.width / 2 - 200, this.gameSize.height / 2, 180, 70, this.gameSize, this.gameSize.width, this.gameSize.height)
+        this.car = new Car(this.ctx, this.gameSize.width / 2 - 200, this.gameSize.height / 2, 100, 50, this.gameSize, this.gameSize.width, this.gameSize.height)
     },
     createBackground() {
         this.background = new Background(this.ctx, this.gameSize, this.gameSize.width, this.gameSize.height)
@@ -78,7 +78,7 @@ const Game = {
                 if (this.car.carPos.x < 5) {
                     return
                 } else {
-                    this.car.moveRight()
+                    this.car.moveLeft()
                 }
             }
             if (event.code === 'ArrowRight') {
@@ -89,22 +89,6 @@ const Game = {
                 } else {
                     this.car.moveRight()
                 }
-            }
-            if (event.code === 'ArrowRight' && 'ArrowUp') {
-                this.car.moveRight()
-                this.car.moveUp()
-            }
-            if (event.code === 'ArrowRight' && 'ArrowDown') {
-                this.car.moveRight()
-                this.car.moveDown()
-            }
-            if (event.code === 'ArrowLeft' && 'ArrowUp') {
-                this.car.moveLeft()
-                this.car.moveUp()
-            }
-            if (event.code === 'ArrowLeft' && 'ArrowDown') {
-                this.car.moveLeft()
-                this.car.moveDown()
             }
         }
     },

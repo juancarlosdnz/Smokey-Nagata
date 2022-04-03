@@ -20,7 +20,7 @@ class Car {
         this.ctx.drawImage(this.imageInstance, this.carPos.x, this.carPos.y, this.carSize.width, this.carSize.height)
     }
     moveLeft() {
-        this.carPos.x -= 12
+        this.carPos.x -= 24
 
     }
     moveRight() {
@@ -33,12 +33,4 @@ class Car {
     moveDown() {
         this.carPos.y += 12
     }
-    stayStill() {
-        this.carPos.x -= 14
-    }
-
-
-
-
-
 }
