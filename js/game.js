@@ -13,7 +13,7 @@ const Game = {
     enemy: undefined,
     bullets: [],
     frameIndex: 0,
-    direction :undefined,
+    direction: undefined,
 
     init(canvasID) {
         this.canvasNode = document.querySelector(`#${canvasID}`)
@@ -24,10 +24,7 @@ const Game = {
         this.setEventListeners()
         this.createBackground()
         this.createBullet()
-
         this.createCar()
-        this.createEnemy()
-        // this.createCop()
         this.start()
     },
     setDimensions() {
@@ -39,13 +36,29 @@ const Game = {
         this.canvasNode.setAttribute('height', this.gameSize.height)
     },
     createCar() {
-        this.car = new Car(this.ctx, this.gameSize.width / 2 - 200, this.gameSize.height / 2, 100, 50, this.gameSize, this.gameSize.width, this.gameSize.height,this.direction)
+        this.car = new Car(this.ctx, this.gameSize.width / 2 - 200, this.gameSize.height / 2, 100, 50, this.gameSize, this.gameSize.width, this.gameSize.height, this.direction)
     },
     createBackground() {
         this.background = new Background(this.ctx, this.gameSize, this.gameSize.width, this.gameSize.height)
     },
     createEnemy() {
-        this.enemy = new Enemy(this.ctx, -40, 200, 100, 50, this.car.carPos.x, this.car.carPos.y)
+        /*
+          let lowW = 30
+        let highW = this.gameSize.w - 50
+        let randomWidthL = 70
+        let randomWidthH = 200
+        let randomHeightL = 10
+        let randomHeightH = 20
+        let randomWidth = Math.floor(Math.random() * (1 + randomWidthH - randomWidthL) + randomWidthL)
+        let randomHeight = Math.floor(Math.random() * (1 + randomHeightH - randomHeightL) + randomHeightL)
+         */
+        let lowX = -20
+        let highX = this.gameSize.width
+        let lowY = -20
+        let highY = this.gameSize.height + 40
+        let randomPosX = Math.floor(Math.random() * ((1 + highX - lowX) + lowX))
+        let randomPosY = Math.floor(Math.random() * ((1 + highY - lowY) + lowY))
+        this.cops.push(new Enemy(this.ctx,randomPosX, randomPosY, 100, 50))
     },
 
     createBullet() {
@@ -62,12 +75,20 @@ const Game = {
         this.background.drawBackground()
         this.bullet.drawBullet()
         this.car.drawCar()
-        this.enemy.drawEnemy()
-        this.enemy.carTracking(this.car.carPos.x, this.car.carPos.y)
+        if (this.frameIndex % 80 == 0) {
+            this.createEnemy()
+        }
+        this.cops.forEach((eachCop) => {
+
+            eachCop.carTracking(this.car.carPos.x, this.car.carPos.y)
+            eachCop.drawEnemy()
+
+        })
+        this.frameIndex++
     },
 
     setEventListeners() {
-        document.onkeydown = event => {
+        document.onkeyup = event => {
             if (event.code === 'ArrowUp') {
                 if (this.car.carPos.y < 10) {
                     return
@@ -98,30 +119,30 @@ const Game = {
                     this.car.moveRight()
                 }
             }
-        
+
             if (event.code === 'KeyW') {
-                    this.direction = 'up'
-                }
-            if (event.code === 'KeyS') {
-                    console.log('S')
-                    this.direction = 'down'
-                    this.direction
-                }
-            if (event.code === 'KeyD') {
-                    console.log('D')
-                    this.direction = 'right'
-                    this.direction
-                }
-            if (event.code === 'KeyA') {
-                    console.log('A')
-                    this.direction = 'left'
-                }
+                this.direction = 'up'
             }
-            return this.direction
+            if (event.code === 'KeyS') {
+                console.log('S')
+                this.direction = 'down'
+                this.direction
+            }
+            if (event.code === 'KeyD') {
+                console.log('D')
+                this.direction = 'right'
+                this.direction
+            }
+            if (event.code === 'KeyA') {
+                console.log('A')
+                this.direction = 'left'
+            }
+        }
+        return this.direction
 
-        },
+    },
 
-    
+
 
     clearAll() {
         this.ctx.clearRect(0, 0, this.gameSize.w, this.gameSize.h)

@@ -17,7 +17,11 @@ class Enemy {
     drawEnemy() {
         this.ctx.drawImage(this.imageInstance, this.enemyPos.x, this.enemyPos.y, this.enemySize.width, this.enemySize.height)
     }
+    moveAllways(){
+        this.enemyPos.x += 3
+    }
     carTracking(carCurrentX, carCurrentY) {
+        
         if (carCurrentX > this.enemyPos.x && carCurrentY > this.enemyPos.y) {
             this.enemyPos.x += 3
             this.enemyPos.y += 3

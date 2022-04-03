@@ -24,17 +24,17 @@ class Car {
     }
 
     moveLeft() {
-        this.carPos.x -= 24
+        this.carPos.x -= 104
 
     }
     moveRight() {
-        this.carPos.x += 12
+        this.carPos.x += 52
 
     }
     moveUp() {
-        this.carPos.y -= 12
+        this.carPos.y -= 40
     }
     moveDown() {
-        this.carPos.y += 12
+        this.carPos.y += 40
     }
 }
