@@ -11,6 +11,7 @@ const Game = {
     car: undefined,
     background: undefined,
     enemy: undefined,
+    bullet: undefined,
 
     init(canvasID) {
         this.canvasNode = document.querySelector(`#${canvasID}`)
@@ -20,9 +21,11 @@ const Game = {
         this.setDimensions()
         this.setEventListeners()
         this.createBackground()
+        this.createBullet()
+
         this.createCar()
         this.createEnemy()
-        // this.createCop()
+            // this.createCop()
         this.start()
     },
     setDimensions() {
@@ -43,16 +46,19 @@ const Game = {
         this.enemy = new Enemy(this.ctx, -40, 200, 100, 50, this.car.carPos.x, this.car.carPos.y)
     },
 
-    createBullet() { },
+    createBullet() {
+        this.bullet = new Bullet(this.ctx, 100, 100, 30, 30)
+    },
 
-    checkColisions() { },
+    checkColisions() {},
 
-    gameOver() { },
+    gameOver() {},
 
-    checkGameOver() { },
+    checkGameOver() {},
 
     drawAll() {
         this.background.drawBackground()
+        this.bullet.drawBullet()
         this.car.drawCar()
         this.enemy.drawEnemy()
         this.enemy.carTracking(this.car.carPos.x, this.car.carPos.y)
