@@ -1,5 +1,5 @@
 class Bullet {
-    constructor(ctx, bulletPosX, bulletPosY, bulletWidth, bulletHeight,direction, gameSize, gameSizeWidth, gameSizeHeight) {
+    constructor(ctx, bulletPosX, bulletPosY, bulletWidth, bulletHeight, direction, gameSize, gameSizeWidth, gameSizeHeight) {
         this.ctx = ctx
         this.bulletPos = { x: bulletPosX, y: bulletPosY }
         this.bulletSize = { width: bulletWidth, height: bulletHeight }
@@ -37,24 +37,19 @@ class Bullet {
 
     }
 
-    move(side) {
-        if (side === 'up') {
-            console.log('Entré a Up')
-            this.bulletPos.y -= 2
-        }
-
-        if (side === 'down') {
-            this.bulletPos.y += 2
-        }
-
-        if (side === 'left') {
-            this.bulletPos.x -= 2
-        }
-
-        if (side === 'right') {
-            this.bulletPos.x += 2
-
-        }
+    moveUp() {
+        console.log('Entré a Up')
+        this.bulletPos.y -= 2
     }
+    moveDown() {
+        this.bulletPos.y += 2
+    }
+    moveLeft() {
+        this.bulletPos.x -= 2
+    }
+    moveRight() {
+        this.bulletPos.x += 2
 
+    }
 }
+

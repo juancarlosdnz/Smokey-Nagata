@@ -10,7 +10,6 @@ class Car {
         this.bulletsRight = []
         this.bulletsLeft = []
         this.imageInstance = undefined
-        this.direction = direction
         this.init()
 
 
@@ -55,27 +54,26 @@ class Car {
 
             if (event.code === 'KeyW') {
                 this.shootBulletUp()
-                this.direction = 'up'
+                this.bulletsUp.moveUp()
                 console.log(this.bulletsUp)
 
             }
             if (event.code === 'KeyS') {
                 console.log('S')
                 this.shootBulletDown()
-                this.direction = 'down'
+                this.bulletsDown.moveDown()
             }
             if (event.code === 'KeyD') {
                 console.log('D')
                 this.shootBulletRight()
-                this.direction = 'right'
+                this.bulletsRight.moveRight()
             }
             if (event.code === 'KeyA') {
                 console.log('A')
                 this.shootBulletLeft()
-                this.direction = 'left'
+                this.bulletsLeft.moveLeft()
             }
         }
-        return this.direction
 
     }
 
@@ -89,19 +87,19 @@ class Car {
         this.bulletsRight.forEach(bullet => bullet.drawBulletRight(this.setEventListeners()))
 
         this.bulletsUp.forEach(eachBullet => {
-            eachBullet.move(this.direction)
+            eachBullet.moveUp()
             eachBullet.drawBulletUp()
         })
         this.bulletsDown.forEach(eachBullet => {
-            eachBullet.move(this.direction)
+            eachBullet.moveDown()
             eachBullet.drawBulletDown()
         })
         this.bulletsLeft.forEach(eachBullet => {
-            eachBullet.move(this.direction)
+            eachBullet.moveLeft()
             eachBullet.drawBulletLeft()
         })
         this.bulletsRight.forEach(eachBullet => {
-            eachBullet.move(this.direction)
+            eachBullet.moveRight()
             eachBullet.drawBulletRight()
         })
 
