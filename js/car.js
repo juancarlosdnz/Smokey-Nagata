@@ -54,24 +54,20 @@ class Car {
 
             if (event.code === 'KeyW') {
                 this.shootBulletUp()
-                this.bulletsUp.moveUp()
                 
 
             }
             if (event.code === 'KeyS') {
                
                 this.shootBulletDown()
-                this.bulletsDown.moveDown()
             }
             if (event.code === 'KeyD') {
                
                 this.shootBulletRight()
-                this.bulletsRight.moveRight()
             }
             if (event.code === 'KeyA') {
                
                 this.shootBulletLeft()
-                this.bulletsLeft.moveLeft()
             }
         }
 
