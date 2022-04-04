@@ -19,26 +19,26 @@ class Bullet {
 
     drawBulletUp() {
         this.ctx.drawImage(this.imageInstance, this.bulletPos.x, this.bulletPos.y, this.bulletSize.width, this.bulletSize.height)
-        console.log('up')
+       
     }
     drawBulletDown() {
         this.ctx.drawImage(this.imageInstance, this.bulletPos.x, this.bulletPos.y, this.bulletSize.width, this.bulletSize.height)
-        console.log('down')
+       
 
     }
     drawBulletLeft() {
         this.ctx.drawImage(this.imageInstance, this.bulletPos.x, this.bulletPos.y, this.bulletSize.width, this.bulletSize.height)
-        console.log('left')
+       
 
     }
     drawBulletRight() {
         this.ctx.drawImage(this.imageInstance, this.bulletPos.x, this.bulletPos.y, this.bulletSize.width, this.bulletSize.height)
-        console.log('right')
+      
 
     }
 
     moveUp() {
-        console.log('Entré a Up')
+       
         this.bulletPos.y -= 2
     }
     moveDown() {
