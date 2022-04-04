@@ -42,22 +42,11 @@ const Game = {
         this.background = new Background(this.ctx, this.gameSize, this.gameSize.width, this.gameSize.height)
     },
     createEnemy() {
-        /*
-          let lowW = 30
-        let highW = this.gameSize.w - 50
-        let randomWidthL = 70
-        let randomWidthH = 200
-        let randomHeightL = 10
-        let randomHeightH = 20
-        let randomWidth = Math.floor(Math.random() * (1 + randomWidthH - randomWidthL) + randomWidthL)
-        let randomHeight = Math.floor(Math.random() * (1 + randomHeightH - randomHeightL) + randomHeightL)
-         */
-        let lowX = -20
-        let highX = this.gameSize.width
-        let lowY = -20
-        let highY = this.gameSize.height + 40
-        let randomPosX = Math.floor(Math.random() * ((1 + highX - lowX) + lowX))
-        let randomPosY = Math.floor(Math.random() * ((1 + highY - lowY) + lowY))
+    
+        let positionX =[-60,this.gameSize.width+100]
+        let positionY=[-100,this.gameSize.height+100]
+        let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
+        let randomPosY = positionY[Math.floor(Math.random() * positionY.length)];
         this.cops.push(new Enemy(this.ctx,randomPosX, randomPosY, 100, 50))
     },
 

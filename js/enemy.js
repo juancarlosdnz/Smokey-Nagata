@@ -6,7 +6,6 @@ class Enemy {
         this.carPosX = carPosX
         this.carPosY = carPosY
         this.enemyVel = { x: 10, y: 2 }
-        // this.ballVel = { x: Math.random() * 10 + 5, y: 1 }
         this.imageInstance = undefined
         this.init()
     }
