@@ -23,7 +23,6 @@ const Game = {
         this.setDimensions()
         this.setEventListeners()
         this.createBackground()
-        this.createBullet()
         this.createCar()
         this.start()
     },
@@ -50,10 +49,6 @@ const Game = {
         this.cops.push(new Enemy(this.ctx,randomPosX, randomPosY, 100, 50))
     },
 
-    createBullet() {
-        this.bullet = new Bullet(this.ctx, 100, 100, 30, 30)
-    },
-
     checkColisions() { },
 
     gameOver() { },
@@ -62,7 +57,6 @@ const Game = {
 
     drawAll() {
         this.background.drawBackground()
-        this.bullet.drawBullet()
         this.car.drawCar()
         if (this.frameIndex % 80 == 0) {
             this.createEnemy()
