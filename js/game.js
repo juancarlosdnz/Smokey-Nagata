@@ -83,6 +83,46 @@ const Game = {
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
                     console.log("epaaaaa matame")
                     this.cops.splice(cop,1)
+                    this.car.bulletsUp.splice(bullet,1)
+                }
+            })
+        })
+        this.car.bulletsDown.forEach(bullet => {
+            this.cops.forEach(cop => {
+                if (bullet.bulletPos.x < cop.enemyPos.x + cop.enemySize.width &&
+                    bullet.bulletPos.x + bullet.bulletSize.width > cop.enemyPos.x &&
+                    bullet.bulletPos.y < cop.enemyPos.y + cop.enemySize.height &&
+                    bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
+                    console.log("epaaaaa matame")
+                    this.cops.splice(cop, 1)
+                    this.car.bulletsDown.splice(bullet, 1)
+
+                }
+            })
+        })
+        this.car.bulletsRight.forEach(bullet => {
+            this.cops.forEach(cop => {
+                if (bullet.bulletPos.x < cop.enemyPos.x + cop.enemySize.width &&
+                    bullet.bulletPos.x + bullet.bulletSize.width > cop.enemyPos.x &&
+                    bullet.bulletPos.y < cop.enemyPos.y + cop.enemySize.height &&
+                    bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
+                    console.log("epaaaaa matame")
+                    this.cops.splice(cop, 1)
+                    this.car.bulletsRight.splice(bullet, 1)
+
+                }
+            })
+        })
+        this.car.bulletsLeft.forEach(bullet => {
+            this.cops.forEach(cop => {
+                if (bullet.bulletPos.x < cop.enemyPos.x + cop.enemySize.width &&
+                    bullet.bulletPos.x + bullet.bulletSize.width > cop.enemyPos.x &&
+                    bullet.bulletPos.y < cop.enemyPos.y + cop.enemySize.height &&
+                    bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
+                    console.log("epaaaaa matame")
+                    this.cops.splice(cop, 1)
+                    this.car.bulletsLeft.splice(bullet, 1)
+
                 }
             })
         })
