@@ -12,7 +12,7 @@ const Game = {
     background: undefined,
     frameIndex: 0,
     direction: undefined,
-//EL CHECK COLLISIONS LO COMPROBAMOS HERE .---------------------------------------------------------------------------------------
+    //EL CHECK COLLISIONS LO COMPROBAMOS HERE .---------------------------------------------------------------------------------------
     init(canvasID) {
         this.canvasNode = document.querySelector(`#${canvasID}`)
         this.ctx = this.canvasNode.getContext('2d')
@@ -38,15 +38,14 @@ const Game = {
         this.background = new Background(this.ctx, this.gameSize, this.gameSize.width, this.gameSize.height)
     },
     createEnemy() {
-    
-        let positionX =[-60,this.gameSize.width+100]
-        let positionY=[-100,this.gameSize.height+100]
+
+        let positionX = [-60, this.gameSize.width + 100]
+        let positionY = [-100, this.gameSize.height + 100]
         let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
         let randomPosY = positionY[Math.floor(Math.random() * positionY.length)];
-        this.cops.push(new Enemy(this.ctx,randomPosX, randomPosY, 100, 50))
+        this.cops.push(new Enemy(this.ctx, randomPosX, randomPosY, 100, 50))
     },
 
-    checkColisions() { },
 
     gameOver() { },
 
@@ -62,6 +61,7 @@ const Game = {
 
             eachCop.carTracking(this.car.carPos.x, this.car.carPos.y)
             eachCop.drawEnemy()
+            this.checkBulletCollision()
 
         })
         this.frameIndex++
@@ -73,17 +73,28 @@ const Game = {
         this.ctx.clearRect(0, 0, this.gameSize.w, this.gameSize.h)
     },
 
-    checkBulletCollision(){
+    checkBulletCollision() {
 
-        var rect1 = { x: 5, y: 5, width: 50, height: 50 }
-        var rect2 = { x: 20, y: 10, width: 10, height: 10 }
+        this.car.bulletsUp.forEach(bullet => {
+            this.cops.forEach(cop => {
+                if (bullet.bulletPos.x < cop.enemyPos.x + cop.enemySize.width &&
+                    bullet.bulletPos.x + bullet.bulletSize.width > cop.enemyPos.x &&
+                    bullet.bulletPos.y < cop.enemyPos.y + cop.enemySize.height &&
+                    bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
+                    console.log("epaaaaa matame")
+                    this.cops.splice(cop,1)
+                }
+            })
+        })
 
-        if (rect1.x < rect2.x + rect2.width &&
-            rect1.x + rect1.width > rect2.x &&
-            rect1.y < rect2.y + rect2.height &&
-            rect1.height + rect1.y > rect2.y) {
-                //que borre el coche
-        }
+
+
+        // if (rect1.x < rect2.x + rect2.width &&
+        //     rect1.x + rect1.width > rect2.x &&
+        //     rect1.y < rect2.y + rect2.height &&
+        //     rect1.height + rect1.y > rect2.y) {
+        //         //que borre el coche
+        // }
     },
 
 
@@ -93,7 +104,7 @@ const Game = {
             this.drawAll()
         }, 30)
     },
-    
+
 
 
 
