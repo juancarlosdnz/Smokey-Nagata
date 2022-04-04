@@ -9,6 +9,7 @@ class Car {
         this.bulletsDown = []
         this.bulletsRight = []
         this.bulletsLeft = []
+        this.allBullets = []
         this.imageInstance = undefined
         this.init()
 
@@ -20,7 +21,7 @@ class Car {
         this.setEventListeners()
     }
     setEventListeners() {
-        document.onkeyup = event => {
+        document.onkeydown = event => {
             if (event.code === 'ArrowUp') {
                 if (this.carPos.y < 10) {
                     return
@@ -78,27 +79,63 @@ class Car {
     drawCar() {
         this.ctx.drawImage(this.imageInstance, this.carPos.x, this.carPos.y, this.carSize.width, this.carSize.height)
         this.bulletsUp.forEach(bullet => bullet.drawBulletUp(this.setEventListeners()))
+        this.allBullets.push(this.bulletsUp)
         this.bulletsDown.forEach(bullet => bullet.drawBulletDown(this.setEventListeners()))
+        this.allBullets.push(this.bulletsDown)
         this.bulletsLeft.forEach(bullet => bullet.drawBulletLeft(this.setEventListeners()))
+        this.allBullets.push(this.bulletsLeft)
         this.bulletsRight.forEach(bullet => bullet.drawBulletRight(this.setEventListeners()))
+        this.allBullets.push(this.bulletsRight)
 
         this.bulletsUp.forEach(eachBullet => {
             eachBullet.moveUp()
             eachBullet.drawBulletUp()
+            this.clearBullets()
         })
         this.bulletsDown.forEach(eachBullet => {
             eachBullet.moveDown()
             eachBullet.drawBulletDown()
+            this.clearBullets()
         })
         this.bulletsLeft.forEach(eachBullet => {
             eachBullet.moveLeft()
             eachBullet.drawBulletLeft()
+            this.clearBullets()
         })
         this.bulletsRight.forEach(eachBullet => {
             eachBullet.moveRight()
             eachBullet.drawBulletRight()
+            this.clearBullets()
         })
 
+    }
+    clearBullets(){
+
+        this.bulletsUp.forEach(eachBullet => {
+            if (eachBullet.bulletPos.x < 0 || eachBullet.bulletPos.x > this.gameSize.width || eachBullet.bulletPos.y < 0 || eachBullet.bulletPos.y > this.gameSize.height){
+                this.bulletsUp.splice(eachBullet,1)
+                console.log(this.bulletsUp)
+            }
+        })
+        this.bulletsDown.forEach(eachBullet => {
+            if (eachBullet.bulletPos.x < 0 || eachBullet.bulletPos.x > this.gameSize.width || eachBullet.bulletPos.y < 0 || eachBullet.bulletPos.y > this.gameSize.height) {
+                this.bulletsDown.splice(eachBullet, 1)
+                console.log(this.bulletsDown)
+            }
+        })
+        this.bulletsLeft.forEach(eachBullet => {
+            if (eachBullet.bulletPos.x < 0 || eachBullet.bulletPos.x > this.gameSize.width || eachBullet.bulletPos.y < 0 || eachBullet.bulletPos.y > this.gameSize.height) {
+                this.bulletsLeft.splice(eachBullet, 1)
+                console.log(this.bulletsLeft)
+            }
+        })
+        this.bulletsRight.forEach(eachBullet => {
+            if (eachBullet.bulletPos.x < 0 || eachBullet.bulletPos.x > this.gameSize.width || eachBullet.bulletPos.y < 0 || eachBullet.bulletPos.y > this.gameSize.height) {
+                this.bulletsRight.splice(eachBullet, 1)
+                console.log(this.bulletsRight)
+            }
+        })
+        
     }
 
     moveLeft() {

@@ -10,18 +10,15 @@ const Game = {
     cops: [],
     car: undefined,
     background: undefined,
-    enemy: undefined,
-    bullets: [],
     frameIndex: 0,
     direction: undefined,
-
+//EL CHECK COLLISIONS LO COMPROBAMOS HERE .---------------------------------------------------------------------------------------
     init(canvasID) {
         this.canvasNode = document.querySelector(`#${canvasID}`)
         this.ctx = this.canvasNode.getContext('2d')
 
 
         this.setDimensions()
-        this.setEventListeners()
         this.createBackground()
         this.createCar()
         this.start()
@@ -70,65 +67,23 @@ const Game = {
         this.frameIndex++
     },
 
-    setEventListeners() {
-        document.onkeyup = event => {
-            if (event.code === 'ArrowUp') {
-                if (this.car.carPos.y < 10) {
-                    return
-                } else {
-                    this.car.moveUp()
-                }
-            }
-            if (event.code === 'ArrowDown') {
-                if (this.car.carPos.y >= this.gameSize.height - this.car.carSize.height) {
-                    return
-                } else {
-                    this.car.moveDown()
-                }
-            }
-            if (event.code === 'ArrowLeft') {
-                if (this.car.carPos.x < 5) {
-                    return
-                } else {
-                    this.car.moveLeft()
-                }
-            }
-            if (event.code === 'ArrowRight') {
-
-
-                if (this.car.carPos.x >= this.gameSize.width - this.car.carSize.width) {
-                    return
-                } else {
-                    this.car.moveRight()
-                }
-            }
-
-            if (event.code === 'KeyW') {
-                this.direction = 'up'
-            }
-            if (event.code === 'KeyS') {
-                console.log('S')
-                this.direction = 'down'
-                this.direction
-            }
-            if (event.code === 'KeyD') {
-                console.log('D')
-                this.direction = 'right'
-                this.direction
-            }
-            if (event.code === 'KeyA') {
-                console.log('A')
-                this.direction = 'left'
-            }
-        }
-        return this.direction
-
-    },
-
 
 
     clearAll() {
         this.ctx.clearRect(0, 0, this.gameSize.w, this.gameSize.h)
+    },
+
+    checkBulletCollision(){
+
+        var rect1 = { x: 5, y: 5, width: 50, height: 50 }
+        var rect2 = { x: 20, y: 10, width: 10, height: 10 }
+
+        if (rect1.x < rect2.x + rect2.width &&
+            rect1.x + rect1.width > rect2.x &&
+            rect1.y < rect2.y + rect2.height &&
+            rect1.height + rect1.y > rect2.y) {
+                //que borre el coche
+        }
     },
 
 
@@ -138,6 +93,7 @@ const Game = {
             this.drawAll()
         }, 30)
     },
+    
 
 
 
