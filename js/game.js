@@ -48,7 +48,9 @@ const Game = {
         this.cops.push(new Enemy(this.ctx, randomPosX, randomPosY, 100, 50))
     },
 
-    scoreCounter() {},
+    scoreCounter() {
+        this.score++
+    },
 
 
     gameOver() {
@@ -68,9 +70,11 @@ const Game = {
             eachCop.carTracking(this.car.carPos.x, this.car.carPos.y)
             eachCop.drawEnemy()
             this.checkBulletCollision()
+            console.log(this.score)
 
         })
         this.frameIndex++
+
     },
 
 
@@ -87,9 +91,9 @@ const Game = {
                     bullet.bulletPos.x + bullet.bulletSize.width > cop.enemyPos.x &&
                     bullet.bulletPos.y < cop.enemyPos.y + cop.enemySize.height &&
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
-                    console.log("epaaaaa matame")
                     this.cops.splice(cop, 1)
                     this.car.bulletsUp.splice(bullet, 1)
+                    this.scoreCounter()
                 }
             })
         })
@@ -99,9 +103,9 @@ const Game = {
                     bullet.bulletPos.x + bullet.bulletSize.width > cop.enemyPos.x &&
                     bullet.bulletPos.y < cop.enemyPos.y + cop.enemySize.height &&
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
-                    console.log("epaaaaa matame")
                     this.cops.splice(cop, 1)
                     this.car.bulletsDown.splice(bullet, 1)
+                    this.scoreCounter()
 
                 }
             })
@@ -112,9 +116,10 @@ const Game = {
                     bullet.bulletPos.x + bullet.bulletSize.width > cop.enemyPos.x &&
                     bullet.bulletPos.y < cop.enemyPos.y + cop.enemySize.height &&
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
-                    console.log("epaaaaa matame")
                     this.cops.splice(cop, 1)
                     this.car.bulletsRight.splice(bullet, 1)
+                    this.scoreCounter()
+
 
                 }
             })
@@ -125,9 +130,10 @@ const Game = {
                     bullet.bulletPos.x + bullet.bulletSize.width > cop.enemyPos.x &&
                     bullet.bulletPos.y < cop.enemyPos.y + cop.enemySize.height &&
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
-                    console.log("epaaaaa matame")
                     this.cops.splice(cop, 1)
                     this.car.bulletsLeft.splice(bullet, 1)
+                    this.scoreCounter()
+
 
                 }
             })
@@ -144,7 +150,6 @@ const Game = {
                 this.gameOver()
             }
         })
-
     },
 
 
