@@ -11,7 +11,7 @@ class Enemy {
     }
     init() {
         this.imageInstance = new Image()
-        this.imageInstance.src = "./img/copCar.png"
+        this.imageInstance.src = "./img/jpcop.png"
     }
     drawEnemy() {
         this.ctx.drawImage(this.imageInstance, this.enemyPos.x, this.enemyPos.y, this.enemySize.width, this.enemySize.height)

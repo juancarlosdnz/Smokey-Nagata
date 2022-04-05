@@ -37,7 +37,8 @@ const Game = {
         this.car = new Car(this.ctx, this.gameSize.width / 2 - 200, this.gameSize.height / 2, 100, 50, this.gameSize, this.gameSize.width, this.gameSize.height, this.direction)
     },
     createBackground() {
-        this.background = new Background(this.ctx, this.gameSize, this.gameSize.width, this.gameSize.height, this.score)
+        this.background = new Background(this.ctx, this.gameSize, 0, 0, this.gameSize.width, this.gameSize.height)
+
 
     },
     createEnemy() {
