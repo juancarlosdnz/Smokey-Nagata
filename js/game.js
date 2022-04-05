@@ -12,6 +12,8 @@ const Game = {
     background: undefined,
     frameIndex: 0,
     direction: undefined,
+    intervalId: undefined,
+    score: 0,
     //EL CHECK COLLISIONS LO COMPROBAMOS HERE .---------------------------------------------------------------------------------------
     init(canvasID) {
         this.canvasNode = document.querySelector(`#${canvasID}`)
@@ -46,14 +48,18 @@ const Game = {
         this.cops.push(new Enemy(this.ctx, randomPosX, randomPosY, 100, 50))
     },
 
+    scoreCounter() {},
 
-    gameOver() { },
 
-    checkGameOver() { },
+    gameOver() {
+        clearInterval(this.intervalId)
+    },
+
 
     drawAll() {
         this.background.drawBackground()
         this.car.drawCar()
+        this.checkEnemyColision()
         if (this.frameIndex % 80 == 0) {
             this.createEnemy()
         }
@@ -82,8 +88,8 @@ const Game = {
                     bullet.bulletPos.y < cop.enemyPos.y + cop.enemySize.height &&
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
                     console.log("epaaaaa matame")
-                    this.cops.splice(cop,1)
-                    this.car.bulletsUp.splice(bullet,1)
+                    this.cops.splice(cop, 1)
+                    this.car.bulletsUp.splice(bullet, 1)
                 }
             })
         })
@@ -126,26 +132,38 @@ const Game = {
                 }
             })
         })
-
-
-
-        // if (rect1.x < rect2.x + rect2.width &&
-        //     rect1.x + rect1.width > rect2.x &&
-        //     rect1.y < rect2.y + rect2.height &&
-        //     rect1.height + rect1.y > rect2.y) {
-        //         //que borre el coche
-        // }
     },
+
+    checkEnemyColision() {
+        this.cops.forEach(cop => {
+            if (this.car.carPos.x < cop.enemyPos.x + cop.enemySize.width &&
+                this.car.carPos.x + this.car.carSize.width > cop.enemyPos.x &&
+                this.car.carPos.y < cop.enemyPos.y + cop.enemySize.height &&
+                this.car.carSize.height + this.car.carPos.y > cop.enemyPos.y) {
+                console.log("car colision")
+                this.gameOver()
+            }
+        })
+
+    },
+
+
+
+    // if (rect1.x < rect2.x + rect2.width &&
+    //     rect1.x + rect1.width > rect2.x &&
+    //     rect1.y < rect2.y + rect2.height &&
+    //     rect1.height + rect1.y > rect2.y) {
+    //         //que borre el coche
+    // }
+
 
 
     start() {
-        setInterval(() => {
-            this.clearAll()
-            this.drawAll()
-        }, 30)
+
+        this.intervalId =
+            setInterval(() => {
+                this.clearAll()
+                this.drawAll()
+            }, 30)
     },
-
-
-
-
 }
