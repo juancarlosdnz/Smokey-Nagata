@@ -13,7 +13,7 @@ const Game = {
     frameIndex: 0,
     direction: undefined,
     intervalId: undefined,
-    score: 0,
+    //score: 0,
     //EL CHECK COLLISIONS LO COMPROBAMOS HERE .---------------------------------------------------------------------------------------
     init(canvasID) {
         this.canvasNode = document.querySelector(`#${canvasID}`)
@@ -37,7 +37,8 @@ const Game = {
         this.car = new Car(this.ctx, this.gameSize.width / 2 - 200, this.gameSize.height / 2, 100, 50, this.gameSize, this.gameSize.width, this.gameSize.height, this.direction)
     },
     createBackground() {
-        this.background = new Background(this.ctx, this.gameSize, this.gameSize.width, this.gameSize.height)
+        this.background = new Background(this.ctx, this.gameSize, this.gameSize.width, this.gameSize.height, this.score)
+
     },
     createEnemy() {
 
@@ -49,7 +50,7 @@ const Game = {
     },
 
     scoreCounter() {
-        this.score++
+        this.car.score++
     },
 
 
@@ -61,6 +62,7 @@ const Game = {
     drawAll() {
         this.background.drawBackground()
         this.car.drawCar()
+        this.car.createScore()
         this.checkEnemyColision()
         if (this.frameIndex % 80 == 0) {
             this.createEnemy()
@@ -70,7 +72,7 @@ const Game = {
             eachCop.carTracking(this.car.carPos.x, this.car.carPos.y)
             eachCop.drawEnemy()
             this.checkBulletCollision()
-            console.log(this.score)
+            console.log(this.car.score)
 
         })
         this.frameIndex++

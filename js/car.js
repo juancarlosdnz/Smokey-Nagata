@@ -11,6 +11,8 @@ class Car {
         this.bulletsLeft = []
         this.allBullets = []
         this.imageInstance = undefined
+        this.score = 0
+
         this.init()
 
 
@@ -20,8 +22,16 @@ class Car {
         this.imageInstance.src = "./img/nagatacar.png"
         this.setEventListeners()
     }
+
+    createScore() {
+        this.ctx.font = "50px Arial"
+        this.ctx.fillText(`Killed Pigs ${this.score}`, 50, 100)
+            // console.log("este es en background " + this.score)
+
+    }
+
     setEventListeners() {
-        document.onkeydown = event => {
+        document.onkeyup = event => {
             if (event.code === 'ArrowUp') {
                 if (this.carPos.y < 10) {
                     return
@@ -55,19 +65,19 @@ class Car {
 
             if (event.code === 'KeyW') {
                 this.shootBulletUp()
-                
+
 
             }
             if (event.code === 'KeyS') {
-               
+
                 this.shootBulletDown()
             }
             if (event.code === 'KeyD') {
-               
+
                 this.shootBulletRight()
             }
             if (event.code === 'KeyA') {
-               
+
                 this.shootBulletLeft()
             }
         }
@@ -109,11 +119,11 @@ class Car {
         })
 
     }
-    clearBullets(){
+    clearBullets() {
 
         this.bulletsUp.forEach(eachBullet => {
-            if (eachBullet.bulletPos.x < 0 || eachBullet.bulletPos.x > this.gameSize.width || eachBullet.bulletPos.y < 0 || eachBullet.bulletPos.y > this.gameSize.height){
-                this.bulletsUp.splice(eachBullet,1)
+            if (eachBullet.bulletPos.x < 0 || eachBullet.bulletPos.x > this.gameSize.width || eachBullet.bulletPos.y < 0 || eachBullet.bulletPos.y > this.gameSize.height) {
+                this.bulletsUp.splice(eachBullet, 1)
                 console.log(this.bulletsUp)
             }
         })
@@ -135,7 +145,7 @@ class Car {
                 console.log(this.bulletsRight)
             }
         })
-        
+
     }
 
     moveLeft() {
@@ -153,15 +163,15 @@ class Car {
         this.carPos.y += 40
     }
     shootBulletUp() {
-        this.bulletsUp.push(new Bullet(this.ctx, this.carPos.x, this.carPos.y, 30, 30))
+        this.bulletsUp.push(new Bullet(this.ctx, this.carPos.x + 30, this.carPos.y - 25, 30, 30))
     }
     shootBulletDown() {
-        this.bulletsDown.push(new Bullet(this.ctx, this.carPos.x, this.carPos.y, 30, 30))
+        this.bulletsDown.push(new Bullet(this.ctx, this.carPos.x + 30, this.carPos.y + 30, 30, 30))
     }
     shootBulletLeft() {
-        this.bulletsLeft.push(new Bullet(this.ctx, this.carPos.x, this.carPos.y, 30, 30))
+        this.bulletsLeft.push(new Bullet(this.ctx, this.carPos.x - this.carSize.width / 2 + 20, this.carPos.y, 30, 30))
     }
     shootBulletRight() {
-        this.bulletsRight.push(new Bullet(this.ctx, this.carPos.x, this.carPos.y, 30, 30))
+        this.bulletsRight.push(new Bullet(this.ctx, this.carPos.x + 60, this.carPos.y, 30, 30))
     }
 }
