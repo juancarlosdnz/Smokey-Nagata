@@ -11,16 +11,16 @@ class Enemy {
     }
     init() {
         this.imageInstance = new Image()
-        this.imageInstance.src = "./img/jpcop.png"
+        this.imageInstance.src = "./img/copCar.png"
     }
     drawEnemy() {
         this.ctx.drawImage(this.imageInstance, this.enemyPos.x, this.enemyPos.y, this.enemySize.width, this.enemySize.height)
     }
-    moveAllways(){
+    moveAllways() {
         this.enemyPos.x += 3
     }
     carTracking(carCurrentX, carCurrentY) {
-        
+
         if (carCurrentX > this.enemyPos.x && carCurrentY > this.enemyPos.y) {
             this.enemyPos.x += 3
             this.enemyPos.y += 3
@@ -33,24 +33,19 @@ class Enemy {
         } else if (carCurrentX < this.enemyPos.x && carCurrentY < this.enemyPos.y) {
             this.enemyPos.x -= 3
             this.enemyPos.y -= 3
-        }
-        else if (carCurrentY == this.enemyPos.y && carCurrentX>this.enemyPos.x) {
+        } else if (carCurrentY == this.enemyPos.y && carCurrentX > this.enemyPos.x) {
             this.enemyPos.x += 4
 
-        }
-        else if (carCurrentY == this.enemyPos.y && carCurrentX < this.enemyPos.x) {
+        } else if (carCurrentY == this.enemyPos.y && carCurrentX < this.enemyPos.x) {
             this.enemyPos.x -= 4
 
-        }
-        else if(carCurrentX == this.enemyPos.x && carCurrentY < this.enemyPos.y){
-            this.enemyPos.y-=3
-        }
-        else if (carCurrentX == this.enemyPos.x && carCurrentY > this.enemyPos.y) {
-            this.enemyPos.y+=3
-        }
-        else if(carCurrentX ==this.enemyPos.x && carCurrentY==this.enemyPos.y){
-            this.enemyPos.y+=0
-            this.enemyPos.x+=0
+        } else if (carCurrentX == this.enemyPos.x && carCurrentY < this.enemyPos.y) {
+            this.enemyPos.y -= 3
+        } else if (carCurrentX == this.enemyPos.x && carCurrentY > this.enemyPos.y) {
+            this.enemyPos.y += 3
+        } else if (carCurrentX == this.enemyPos.x && carCurrentY == this.enemyPos.y) {
+            this.enemyPos.y += 0
+            this.enemyPos.x += 0
         }
 
     }
