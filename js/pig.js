@@ -23,13 +23,13 @@ class Pig {
             this.pigPos.y -= 3
         } else if (carCurrentX > this.pigPos.x && carCurrentY < this.pigPos.y) {
             this.pigPos.x -= 3
-            this.pigPos.y += 3
+            this.pigPos.y -= 3
         } else if (carCurrentX < this.pigPos.x && carCurrentY > this.pigPos.y) {
             this.pigPos.x += 3
             this.pigPos.y -= 3
         } else if (carCurrentX < this.pigPos.x && carCurrentY < this.pigPos.y) {
             this.pigPos.x += 3
-            this.pigPos.y += 3
+            this.pigPos.y -= 3
         } else if (carCurrentY == this.pigPos.y && carCurrentX > this.pigPos.x) {
             this.pigPos.x -= 4
 

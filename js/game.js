@@ -42,8 +42,8 @@ const Game = {
         this.background = new Background(this.ctx, this.gameSize, 0, 0, this.gameSize.width, this.gameSize.height)
     },
     createEnemy() {
-        let positionX = [-60, this.gameSize.width + 100]
-        let positionY = [this.gameSize.height / 1.8, this.gameSize.height + 100]
+        let positionX = [-60, 40,150,250,350,450,this.gameSize.width + 100]
+        let positionY = [this.gameSize.height + 100]
         let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
         let randomPosY = positionY[Math.floor(Math.random() * positionY.length)];
         this.cops.push(new Enemy(this.ctx, randomPosX, randomPosY, 100, 50))
