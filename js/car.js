@@ -34,7 +34,7 @@ class Car {
     setEventListeners() {
         document.onkeyup = event => {
             if (event.code === 'ArrowUp') {
-                if (this.carPos.y < 10) {
+                if (this.carPos.y < this.gameSize.height/1.9) {
                     return
                 } else {
                     this.moveUp()

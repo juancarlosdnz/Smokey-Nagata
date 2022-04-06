@@ -43,13 +43,13 @@ const Game = {
     },
     createEnemy() {
         let positionX = [-60, this.gameSize.width + 100]
-        let positionY = [-100, this.gameSize.height + 100]
+        let positionY = [this.gameSize.height / 1.8, this.gameSize.height + 100]
         let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
         let randomPosY = positionY[Math.floor(Math.random() * positionY.length)];
         this.cops.push(new Enemy(this.ctx, randomPosX, randomPosY, 100, 50))
     },
     createPig() {
-       
+
     },
 
     scoreCounter() {
@@ -68,6 +68,7 @@ const Game = {
         this.car.drawCar()
         this.car.createScore()
         this.checkEnemyColision()
+        this.checkPigOutOfBounds()
         if (this.frameIndex % 40 == 0) {
             this.createEnemy()
         }
@@ -90,6 +91,16 @@ const Game = {
 
     clearAll() {
         this.ctx.clearRect(0, 0, this.gameSize.w, this.gameSize.h)
+    },
+
+    checkPigOutOfBounds() {
+        this.pigs.forEach(eachPig => {
+            if (eachPig.pigPos.x < 0 || eachPig.pigPos.x > this.gameSize.width || eachPig.pigPos.y < 0 || eachPig.pigPos.y > this.gameSize.height) {
+                this.pigs.splice(eachPig, 1)
+                console.log(this.pigs)
+            }
+        })
+
     },
 
     checkBulletCollision() {

@@ -23,27 +23,27 @@ class Enemy {
 
         
             if (carCurrentX > this.enemyPos.x && carCurrentY > this.enemyPos.y) {
-                this.enemyPos.x += 3
-                this.enemyPos.y += 3
+                this.enemyPos.x += 7
+                this.enemyPos.y += 7
             } else if (carCurrentX > this.enemyPos.x && carCurrentY < this.enemyPos.y) {
-                this.enemyPos.x += 3
-                this.enemyPos.y -= 3
+                this.enemyPos.x += 7
+                this.enemyPos.y -= 7
             } else if (carCurrentX < this.enemyPos.x && carCurrentY > this.enemyPos.y) {
-                this.enemyPos.x -= 3
-                this.enemyPos.y += 3
+                this.enemyPos.x -= 7
+                this.enemyPos.y += 7
             } else if (carCurrentX < this.enemyPos.x && carCurrentY < this.enemyPos.y) {
-                this.enemyPos.x -= 3
-                this.enemyPos.y -= 3
+                this.enemyPos.x -= 7
+                this.enemyPos.y -= 7
             } else if (carCurrentY == this.enemyPos.y && carCurrentX > this.enemyPos.x) {
-                this.enemyPos.x += 4
+                this.enemyPos.x += 7
 
             } else if (carCurrentY == this.enemyPos.y && carCurrentX < this.enemyPos.x) {
-                this.enemyPos.x -= 4
+                this.enemyPos.x -= 7
 
             } else if (carCurrentX == this.enemyPos.x && carCurrentY < this.enemyPos.y) {
-                this.enemyPos.y -= 3
+                this.enemyPos.y -= 7
             } else if (carCurrentX == this.enemyPos.x && carCurrentY > this.enemyPos.y) {
-                this.enemyPos.y += 3
+                this.enemyPos.y += 7
             } else if (carCurrentX == this.enemyPos.x && carCurrentY == this.enemyPos.y) {
                 this.enemyPos.y += 0
                 this.enemyPos.x += 0
