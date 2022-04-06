@@ -101,7 +101,7 @@ const Game = {
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
                     this.cops.splice(cop, 1)
                     this.car.bulletsUp.splice(bullet, 1)
-                    this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 50, 50))
+                    this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 100, 100))
                     this.scoreCounter()
 
                 }
@@ -115,7 +115,7 @@ const Game = {
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
                     this.cops.splice(cop, 1)
                     this.car.bulletsDown.splice(bullet, 1)
-                    this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 50, 50))
+                    this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 100, 100))
                     this.scoreCounter()
                 }
             })
@@ -128,7 +128,7 @@ const Game = {
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
                     this.cops.splice(cop, 1)
                     this.car.bulletsRight.splice(bullet, 1)
-                    this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 50, 50))
+                    this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 100, 100))
 
 
                     this.scoreCounter()
@@ -144,11 +144,8 @@ const Game = {
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
                     this.cops.splice(cop, 1)
                     this.car.bulletsLeft.splice(bullet, 1)
-                    this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 50, 50))
+                    this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 100, 100))
                     this.scoreCounter()
-
-
-
 
                 }
             })
@@ -166,17 +163,6 @@ const Game = {
             }
         })
     },
-
-
-
-    // if (rect1.x < rect2.x + rect2.width &&
-    //     rect1.x + rect1.width > rect2.x &&
-    //     rect1.y < rect2.y + rect2.height &&
-    //     rect1.height + rect1.y > rect2.y) {
-    //         //que borre el coche
-    // }
-
-
 
     start() {
 

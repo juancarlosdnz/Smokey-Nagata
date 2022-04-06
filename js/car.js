@@ -25,7 +25,8 @@ class Car {
 
     createScore() {
         this.ctx.font = "50px Arial"
-        this.ctx.fillText(`Killed Pigs ${this.score}`, 50, 100)
+        this.ctx.fillStyle = "White"
+        this.ctx.fillText(`Pigs Killed: ${this.score}`, 50, 100)
             // console.log("este es en background " + this.score)
 
     }

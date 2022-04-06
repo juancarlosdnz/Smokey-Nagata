@@ -10,7 +10,7 @@ class Pig {
     }
     init() {
         this.imageInstance = new Image()
-        this.imageInstance.src = "./img/copCar.png"
+        this.imageInstance.src = "./img/pig.png"
     }
     drawPig() {
         this.ctx.drawImage(this.imageInstance, this.pigPos.x, this.pigPos.y, this.pigSize.width, this.pigSize.height)
