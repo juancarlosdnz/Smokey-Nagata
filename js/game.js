@@ -42,7 +42,7 @@ const Game = {
         this.background = new Background(this.ctx, this.gameSize, 0, 0, this.gameSize.width, this.gameSize.height)
     },
     createEnemy() {
-        let positionX = [-60, 40,150,250,350,450,this.gameSize.width + 100]
+        let positionX = [-60, 40, 150, 250, 350, 450, this.gameSize.width + 100]
         let positionY = [this.gameSize.height + 100]
         let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
         let randomPosY = positionY[Math.floor(Math.random() * positionY.length)];
@@ -86,6 +86,10 @@ const Game = {
         this.frameIndex++
 
     },
+    pigScream() {
+        let audio = new Audio("./audio/pigScream.mp3");
+        audio.play()
+    },
 
 
 
@@ -114,7 +118,7 @@ const Game = {
                     this.car.bulletsUp.splice(bullet, 1)
                     this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 100, 100))
                     this.scoreCounter()
-
+                    this.pigScream()
                 }
             })
         })
@@ -128,6 +132,7 @@ const Game = {
                     this.car.bulletsDown.splice(bullet, 1)
                     this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 100, 100))
                     this.scoreCounter()
+                    this.pigScream()
                 }
             })
         })
@@ -140,10 +145,8 @@ const Game = {
                     this.cops.splice(cop, 1)
                     this.car.bulletsRight.splice(bullet, 1)
                     this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 100, 100))
-
-
                     this.scoreCounter()
-
+                    this.pigScream()
                 }
             })
         })
@@ -157,7 +160,7 @@ const Game = {
                     this.car.bulletsLeft.splice(bullet, 1)
                     this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 100, 100))
                     this.scoreCounter()
-
+                    this.pigScream()
                 }
             })
         })
