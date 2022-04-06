@@ -13,6 +13,7 @@ const Game = {
     frameIndex: 0,
     direction: undefined,
     intervalId: undefined,
+    pigs: [],
     //score: 0,
     //EL CHECK COLLISIONS LO COMPROBAMOS HERE .---------------------------------------------------------------------------------------
     init(canvasID) {
@@ -38,16 +39,16 @@ const Game = {
     },
     createBackground() {
         this.background = new Background(this.ctx, this.gameSize, 0, 0, this.gameSize.width, this.gameSize.height)
-
-
     },
     createEnemy() {
-
         let positionX = [-60, this.gameSize.width + 100]
         let positionY = [-100, this.gameSize.height + 100]
         let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
         let randomPosY = positionY[Math.floor(Math.random() * positionY.length)];
         this.cops.push(new Enemy(this.ctx, randomPosX, randomPosY, 100, 50))
+    },
+    createPig() {
+        this.pigs.push(new Pig(this.ctx, 100, 100, this.gameSize, this.gameSize.width, this.gameSize.height, 50, 50))
     },
 
     scoreCounter() {
@@ -62,6 +63,7 @@ const Game = {
 
     drawAll() {
         this.background.drawBackground()
+
         this.car.drawCar()
         this.car.createScore()
         this.checkEnemyColision()
@@ -73,9 +75,9 @@ const Game = {
             eachCop.carTracking(this.car.carPos.x, this.car.carPos.y)
             eachCop.drawEnemy()
             this.checkBulletCollision()
-            console.log(this.car.score)
 
         })
+
         this.frameIndex++
 
     },
@@ -122,6 +124,10 @@ const Game = {
                     this.cops.splice(cop, 1)
                     this.car.bulletsRight.splice(bullet, 1)
                     this.scoreCounter()
+                    this.createPig()
+                    this.pigs.forEach(eachPig => {
+                        eachPig.drawPig()
+                    })
 
 
                 }
@@ -141,6 +147,7 @@ const Game = {
                 }
             })
         })
+
     },
 
     checkEnemyColision() {
