@@ -5,16 +5,12 @@ class Enemy {
         this.enemySize = { width: enemyWidth, height: enemyHeight }
         this.carPosX = carPosX
         this.carPosY = carPosY
-        this.enemyVel = { x: 10, y: 2 }
         this.imageInstance = undefined
-        this.pig = false
         this.init()
     }
     init() {
         this.imageInstance = new Image()
         this.imageInstance.src = "./img/jpcop.png"
-
-
 
     }
     drawEnemy() {
@@ -25,7 +21,7 @@ class Enemy {
     }
     carTracking(carCurrentX, carCurrentY) {
 
-        if (this.pig==false) {
+        
             if (carCurrentX > this.enemyPos.x && carCurrentY > this.enemyPos.y) {
                 this.enemyPos.x += 3
                 this.enemyPos.y += 3
@@ -52,39 +48,6 @@ class Enemy {
                 this.enemyPos.y += 0
                 this.enemyPos.x += 0
             }
-        }
-        else if (this.pig==true) {
-            console.log("ahora eres un cerdo MUAJAJA")
-            this.imageInstance.src = "./img/copCar.png"
-            if (this.imageInstance.src == ".img/copCar.png"){
-                if (carCurrentX > this.enemyPos.x && carCurrentY > this.enemyPos.y) {
-                    this.enemyPos.x -= 3
-                    this.enemyPos.y -= 3
-                } else if (carCurrentX > this.enemyPos.x && carCurrentY < this.enemyPos.y) {
-                    this.enemyPos.x -= 3
-                    this.enemyPos.y += 3
-                } else if (carCurrentX < this.enemyPos.x && carCurrentY > this.enemyPos.y) {
-                    this.enemyPos.x += 3
-                    this.enemyPos.y -= 3
-                } else if (carCurrentX < this.enemyPos.x && carCurrentY < this.enemyPos.y) {
-                    this.enemyPos.x += 3
-                    this.enemyPos.y += 3
-                } else if (carCurrentY == this.enemyPos.y && carCurrentX > this.enemyPos.x) {
-                    this.enemyPos.x -= 4
-
-                } else if (carCurrentY == this.enemyPos.y && carCurrentX < this.enemyPos.x) {
-                    this.enemyPos.x += 4
-
-                } else if (carCurrentX == this.enemyPos.x && carCurrentY < this.enemyPos.y) {
-                    this.enemyPos.y += 3
-                } else if (carCurrentX == this.enemyPos.x && carCurrentY > this.enemyPos.y) {
-                    this.enemyPos.y -= 3
-                }
-            }
-            
-
-        }
-
 
     }
 }

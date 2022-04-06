@@ -14,9 +14,33 @@ class Pig {
     }
     drawPig() {
         this.ctx.drawImage(this.imageInstance, this.pigPos.x, this.pigPos.y, this.pigSize.width, this.pigSize.height)
-        this.move()
     }
-    move(){
-        this.pigPos.x -= 2
+    pigsLeaving(carCurrentX, carCurrentY) {
+
+
+        if (carCurrentX > this.pigPos.x && carCurrentY > this.pigPos.y) {
+            this.pigPos.x -= 3
+            this.pigPos.y -= 3
+        } else if (carCurrentX > this.pigPos.x && carCurrentY < this.pigPos.y) {
+            this.pigPos.x -= 3
+            this.pigPos.y += 3
+        } else if (carCurrentX < this.pigPos.x && carCurrentY > this.pigPos.y) {
+            this.pigPos.x += 3
+            this.pigPos.y -= 3
+        } else if (carCurrentX < this.pigPos.x && carCurrentY < this.pigPos.y) {
+            this.pigPos.x += 3
+            this.pigPos.y += 3
+        } else if (carCurrentY == this.pigPos.y && carCurrentX > this.pigPos.x) {
+            this.pigPos.x -= 4
+
+        } else if (carCurrentY == this.pigPos.y && carCurrentX < this.pigPos.x) {
+            this.pigPos.x += 4
+
+        } else if (carCurrentX == this.pigPos.x && carCurrentY < this.pigPos.y) {
+            this.pigPos.y += 3
+        } else if (carCurrentX == this.pigPos.x && carCurrentY > this.pigPos.y) {
+            this.pigPos.y -= 3
+        }
+
     }
 }

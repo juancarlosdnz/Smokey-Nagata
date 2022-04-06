@@ -49,7 +49,7 @@ const Game = {
         this.cops.push(new Enemy(this.ctx, randomPosX, randomPosY, 100, 50))
     },
     createPig() {
-        this.pigs.push(new Pig(this.ctx, 100, 100, this.gameSize, this.gameSize.width, this.gameSize.height, 50, 50))
+       
     },
 
     scoreCounter() {
@@ -77,6 +77,7 @@ const Game = {
             this.checkBulletCollision()
         })
         this.pigs.forEach((eachPig) => {
+            eachPig.pigsLeaving(this.car.carPos.x, this.car.carPos.y)
             eachPig.drawPig()
         })
         console.log(this.pigs)
@@ -100,8 +101,7 @@ const Game = {
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
                     this.cops.splice(cop, 1)
                     this.car.bulletsUp.splice(bullet, 1)
-                    this.createPig()
-
+                    this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 50, 50))
                     this.scoreCounter()
 
                 }
@@ -115,7 +115,7 @@ const Game = {
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
                     this.cops.splice(cop, 1)
                     this.car.bulletsDown.splice(bullet, 1)
-                    this.createPig()
+                    this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 50, 50))
                     this.scoreCounter()
                 }
             })
@@ -128,7 +128,8 @@ const Game = {
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
                     this.cops.splice(cop, 1)
                     this.car.bulletsRight.splice(bullet, 1)
-                    this.createPig()
+                    this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 50, 50))
+
 
                     this.scoreCounter()
 
@@ -143,8 +144,7 @@ const Game = {
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
                     this.cops.splice(cop, 1)
                     this.car.bulletsLeft.splice(bullet, 1)
-                    this.createPig()
-
+                    this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 50, 50))
                     this.scoreCounter()
 
 
