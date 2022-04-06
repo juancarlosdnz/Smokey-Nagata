@@ -5,8 +5,6 @@ class Bullet {
         this.bulletSize = { width: bulletWidth, height: bulletHeight }
         this.gameSize = gameSize
         this.gameSize = { width: gameSizeWidth, height: gameSizeHeight }
-        this.bulletVel = { x: 10, y: 2 }
-            // this.ballVel = { x: Math.random() * 10 + 5, y: 1 }
         this.imageInstance = undefined
         this.direction = direction
         this.init()
@@ -15,6 +13,7 @@ class Bullet {
     init() {
         this.imageInstance = new Image()
         this.imageInstance.src = "./img/Nos.png"
+
     }
 
     drawBulletUp() {
@@ -39,16 +38,16 @@ class Bullet {
 
     moveUp() {
 
-        this.bulletPos.y -= 5
+        this.bulletPos.y -= 7
     }
     moveDown() {
-        this.bulletPos.y += 5
+        this.bulletPos.y += 7
     }
     moveLeft() {
-        this.bulletPos.x -= 8
+        this.bulletPos.x -= 20
     }
     moveRight() {
-        this.bulletPos.x += 10
+        this.bulletPos.x += 20
 
     }
 }

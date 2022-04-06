@@ -11,7 +11,7 @@ class Background {
     }
     init() {
         this.imageInstance = new Image()
-        this.imageInstance.src = "./img/back.jpg"
+        this.imageInstance.src = "./img/backme.png"
 
     }
     drawBackground() {
@@ -20,20 +20,13 @@ class Background {
             this.ctx.drawImage(this.imageInstance, this.backgroundPos.x + this.gameSize.backgroundWidth, this.backgroundPos.y, this.gameSize.backgroundWidth, this.gameSize.backgroundHeight)
             this.move()
 
-
-            //console.log("este es en background " + this.score)
-
         }
-        // draw() {
-        //     this.ctx.drawImage(this.image, this.posX, this.posY, this.width, this.height);
-        //     this.ctx.drawImage(this.image, this.posX + this.width, this.posY, this.width, this.height);
-        // }
 
     move() {
         if (this.backgroundPos.x <= -this.gameSize.backgroundWidth) {
             this.backgroundPos.x = 0;
         }
-        this.backgroundPos.x -= 10
+        this.backgroundPos.x -= 20
 
     }
 }

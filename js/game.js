@@ -65,7 +65,7 @@ const Game = {
         this.car.drawCar()
         this.car.createScore()
         this.checkEnemyColision()
-        if (this.frameIndex % 80 == 0) {
+        if (this.frameIndex % 40 == 0) {
             this.createEnemy()
         }
         this.cops.forEach((eachCop) => {
