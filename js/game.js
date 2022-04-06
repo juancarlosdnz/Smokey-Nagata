@@ -14,6 +14,7 @@ const Game = {
     direction: undefined,
     intervalId: undefined,
     pigs: [],
+    boosters: [],
     boolPig: false,
     shootable:false,
     //score: 0,
@@ -58,11 +59,14 @@ const Game = {
     gameOver() {
         clearInterval(this.intervalId)
     },
-
+    createBooster(){
+        let positionX = [1050, 1200, this.gameSize.width + 100]
+        let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
+        this.boosters.push(new Booster(this.ctx, randomPosX, 0,this.gameSize,this.gameSize.width,this.gameSize.height,60,30))
+    },
 
     drawAll() {
         this.background.drawBackground()
-
         this.car.drawCar(this.shootable)
         this.car.createScore()
         if (this.frameIndex % 10 == true) {
@@ -71,11 +75,19 @@ const Game = {
         else if(this.frameIndex % 5==0){
             this.shootable = false
         }
+        this.clearBoosterOutOfBounds()
         this.checkEnemyColision()
         this.checkPigOutOfBounds()
         if (this.frameIndex % 40 == 0) {
-            this.createEnemy()
+            //this.createEnemy()
         }
+
+        if (this.frameIndex % 100 == 0) {
+            this.createBooster()
+        }
+        this.boosters.forEach((eachBooster) => {
+            eachBooster.drawB()
+        })
         this.cops.forEach((eachCop) => {
             eachCop.carTracking(this.car.carPos.x, this.car.carPos.y)
             eachCop.drawEnemy()
@@ -85,7 +97,6 @@ const Game = {
             eachPig.pigsLeaving(this.car.carPos.x, this.car.carPos.y)
             eachPig.drawPig()
         })
-
         this.frameIndex++
 
     },
@@ -98,6 +109,15 @@ const Game = {
 
     clearAll() {
         this.ctx.clearRect(0, 0, this.gameSize.w, this.gameSize.h)
+    },
+
+    clearBoosterOutOfBounds() {
+        this.boosters.forEach(eachBooster => {
+            if (eachBooster.boosterPos.x < 0 || eachBooster.boosterPos.x > this.gameSize.width || eachBooster.boosterPos.y < 0 || eachBooster.boosterPos.y > this.gameSize.height) {
+                this.boosters.splice(eachBooster, 1)
+                
+            }
+        })
     },
 
     checkPigOutOfBounds() {
