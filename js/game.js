@@ -15,6 +15,7 @@ const Game = {
     intervalId: undefined,
     pigs: [],
     boolPig: false,
+    shootable:false,
     //score: 0,
     //EL CHECK COLLISIONS LO COMPROBAMOS HERE .---------------------------------------------------------------------------------------
     init(canvasID) {
@@ -48,9 +49,6 @@ const Game = {
         let randomPosY = positionY[Math.floor(Math.random() * positionY.length)];
         this.cops.push(new Enemy(this.ctx, randomPosX, randomPosY, 100, 50))
     },
-    createPig() {
-
-    },
 
     scoreCounter() {
         this.car.score++
@@ -65,8 +63,14 @@ const Game = {
     drawAll() {
         this.background.drawBackground()
 
-        this.car.drawCar()
+        this.car.drawCar(this.shootable)
         this.car.createScore()
+        if (this.frameIndex % 10 == true) {
+            this.shootable = true
+        }
+        else if(this.frameIndex % 5==0){
+            this.shootable = false
+        }
         this.checkEnemyColision()
         this.checkPigOutOfBounds()
         if (this.frameIndex % 40 == 0) {
@@ -81,7 +85,6 @@ const Game = {
             eachPig.pigsLeaving(this.car.carPos.x, this.car.carPos.y)
             eachPig.drawPig()
         })
-        console.log(this.pigs)
 
         this.frameIndex++
 
@@ -101,7 +104,6 @@ const Game = {
         this.pigs.forEach(eachPig => {
             if (eachPig.pigPos.x < 0 || eachPig.pigPos.x > this.gameSize.width || eachPig.pigPos.y < 0 || eachPig.pigPos.y > this.gameSize.height) {
                 this.pigs.splice(eachPig, 1)
-                console.log(this.pigs)
             }
         })
 
@@ -172,7 +174,7 @@ const Game = {
                 this.car.carPos.x + this.car.carSize.width > cop.enemyPos.x &&
                 this.car.carPos.y < cop.enemyPos.y + cop.enemySize.height &&
                 this.car.carSize.height + this.car.carPos.y > cop.enemyPos.y) {
-                console.log("car colision")
+                
                 this.gameOver()
             }
         })

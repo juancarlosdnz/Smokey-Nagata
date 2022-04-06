@@ -1,5 +1,5 @@
 class Car {
-    constructor(ctx, carPosX, carPosY, carWidth, carHeight, gameSize, gameSizeWidth, gameSizeHeight, direction) {
+    constructor(ctx, carPosX, carPosY, carWidth, carHeight, gameSize, gameSizeWidth, gameSizeHeight, shootable) {
         this.ctx = ctx
         this.gameSize = gameSize
         this.gameSize = { width: gameSizeWidth, height: gameSizeHeight }
@@ -12,7 +12,7 @@ class Car {
         this.allBullets = []
         this.imageInstance = undefined
         this.score = 0
-
+        this.shootable=shootable
         this.init()
 
 
@@ -24,7 +24,7 @@ class Car {
     }
 
     createScore() {
-        this.ctx.font = "50px Arial"
+        this.ctx.font = "50px Helvetica"
         this.ctx.fillStyle = "White"
         this.ctx.fillText(`Pigs Killed: ${this.score}`, 50, 100)
             // console.log("este es en background " + this.score)
@@ -63,31 +63,36 @@ class Car {
                     this.moveRight()
                 }
             }
+            if(this.shootable == true){
+                
+                    if (event.code === 'KeyW') {
+                        this.shootBulletUp()
 
-            if (event.code === 'KeyW') {
-                this.shootBulletUp()
+                    }
+                    if (event.code === 'KeyS') {
 
+                        this.shootBulletDown()
+                    }
+                    if (event.code === 'KeyD') {
 
+                        this.shootBulletRight()
+                    }
+                    if (event.code === 'KeyA') {
+
+                        this.shootBulletLeft()
+                    }
+               
             }
-            if (event.code === 'KeyS') {
 
-                this.shootBulletDown()
-            }
-            if (event.code === 'KeyD') {
-
-                this.shootBulletRight()
-            }
-            if (event.code === 'KeyA') {
-
-                this.shootBulletLeft()
-            }
+         
         }
 
     }
 
 
 
-    drawCar() {
+    drawCar(shootable) {
+        this.shootable=shootable
         this.ctx.drawImage(this.imageInstance, this.carPos.x, this.carPos.y, this.carSize.width, this.carSize.height)
         this.bulletsUp.forEach(bullet => bullet.drawBulletUp(this.setEventListeners()))
         this.allBullets.push(this.bulletsUp)
