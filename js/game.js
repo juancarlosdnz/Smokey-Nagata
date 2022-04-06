@@ -14,6 +14,7 @@ const Game = {
     direction: undefined,
     intervalId: undefined,
     pigs: [],
+    boolPig: false,
     //score: 0,
     //EL CHECK COLLISIONS LO COMPROBAMOS HERE .---------------------------------------------------------------------------------------
     init(canvasID) {
@@ -71,12 +72,14 @@ const Game = {
             this.createEnemy()
         }
         this.cops.forEach((eachCop) => {
-
             eachCop.carTracking(this.car.carPos.x, this.car.carPos.y)
             eachCop.drawEnemy()
             this.checkBulletCollision()
-
         })
+        this.pigs.forEach((eachPig) => {
+            eachPig.drawPig()
+        })
+        console.log(this.pigs)
 
         this.frameIndex++
 
@@ -89,7 +92,6 @@ const Game = {
     },
 
     checkBulletCollision() {
-
         this.car.bulletsUp.forEach(bullet => {
             this.cops.forEach(cop => {
                 if (bullet.bulletPos.x < cop.enemyPos.x + cop.enemySize.width &&
@@ -98,7 +100,10 @@ const Game = {
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
                     this.cops.splice(cop, 1)
                     this.car.bulletsUp.splice(bullet, 1)
+                    this.createPig()
+
                     this.scoreCounter()
+
                 }
             })
         })
@@ -110,8 +115,8 @@ const Game = {
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
                     this.cops.splice(cop, 1)
                     this.car.bulletsDown.splice(bullet, 1)
+                    this.createPig()
                     this.scoreCounter()
-
                 }
             })
         })
@@ -123,12 +128,9 @@ const Game = {
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
                     this.cops.splice(cop, 1)
                     this.car.bulletsRight.splice(bullet, 1)
-                    this.scoreCounter()
                     this.createPig()
-                    this.pigs.forEach(eachPig => {
-                        eachPig.drawPig()
-                    })
 
+                    this.scoreCounter()
 
                 }
             })
@@ -141,7 +143,11 @@ const Game = {
                     bullet.bulletSize.height + bullet.bulletPos.y > cop.enemyPos.y) {
                     this.cops.splice(cop, 1)
                     this.car.bulletsLeft.splice(bullet, 1)
+                    this.createPig()
+
                     this.scoreCounter()
+
+
 
 
                 }
@@ -149,7 +155,6 @@ const Game = {
         })
 
     },
-
     checkEnemyColision() {
         this.cops.forEach(cop => {
             if (this.car.carPos.x < cop.enemyPos.x + cop.enemySize.width &&

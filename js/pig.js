@@ -14,5 +14,9 @@ class Pig {
     }
     drawPig() {
         this.ctx.drawImage(this.imageInstance, this.pigPos.x, this.pigPos.y, this.pigSize.width, this.pigSize.height)
+        this.move()
+    }
+    move(){
+        this.pigPos.x -= 2
     }
 }
