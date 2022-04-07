@@ -39,7 +39,7 @@ class Car {
                 this.imageInstance.src = './img/nagatacar.png'
                 if (event.code === 'ArrowUp') {
 
-                    if (this.carPos.y < this.gameSize.height / 1.9) {
+                    if (this.carPos.y < this.gameSize.height / 1.7) {
                         return
                     } else {
                         this.moveUp()

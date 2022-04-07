@@ -1,4 +1,4 @@
-class Booster {
+class BoosterNuke {
     constructor(ctx, boosterPosX, boosterPosY, gameSize, gameSizeWidth, gameSizeHeight, boosterSizeWidth, boosterSizeHeight) {
         this.ctx = ctx
         this.boosterPos = { x: boosterPosX, y: boosterPosY }

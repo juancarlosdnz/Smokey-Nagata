@@ -14,7 +14,8 @@ const Game = {
     direction: undefined,
     intervalId: undefined,
     pigs: [],
-    boosters: [],
+    boostersNuke: [],
+    boosterWings:[],
     boolPig: false,
     shootable: false,
     nagataDeath: false,
@@ -64,10 +65,15 @@ const Game = {
         canvas.classList.add('hidden')
         gameOver.classList.remove('hidden')
     },
-    createBooster() {
-        let positionX = [1050, 1200, this.gameSize.width + 100]
+    createBoosterNuke() {
+        let positionX = [300, 500, 800, 1050, 1200, this.gameSize.width-40]
         let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
-        this.boosters.push(new Booster(this.ctx, randomPosX, 0, this.gameSize, this.gameSize.width, this.gameSize.height, 60, 30))
+        this.boostersNuke.push(new BoosterNuke(this.ctx, randomPosX, 0, this.gameSize, this.gameSize.width, this.gameSize.height, 60, 30))
+    },
+    createBoosterWings() {
+        let positionX = [300,500,800,1050, 1200, this.gameSize.width-40]
+        let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
+        this.boosterWings.push(new BoosterWing(this.ctx, randomPosX, 0, this.gameSize, this.gameSize.width, this.gameSize.height, 90, 60))
     },
 
     drawAll() {
@@ -82,15 +88,22 @@ const Game = {
         this.clearBoosterOutOfBounds()
         this.checkEnemyColision()
         this.checkPigOutOfBounds()
-        this.checkBoosterColision()
+        this.checkBoosterNukeColision()
+        this.checkBoosterWingColision()
         if (this.frameIndex % 100 == 0) {
             this.createEnemy()
         }
 
-        if (this.frameIndex % 100 == 0) {
-            this.createBooster()
+        if (this.frameIndex % 200 == 0) {
+            this.createBoosterNuke()
         }
-        this.boosters.forEach((eachBooster) => {
+        if (this.frameIndex % 100 == 0) {
+            this.createBoosterWings()
+        }
+        this.boosterWings.forEach((eachBooster) => {
+            eachBooster.drawB()
+        })
+        this.boostersNuke.forEach((eachBooster) => {
             eachBooster.drawB()
         })
         this.cops.forEach((eachCop) => {
@@ -117,9 +130,9 @@ const Game = {
     },
 
     clearBoosterOutOfBounds() {
-        this.boosters.forEach(eachBooster => {
+        this.boostersNuke.forEach(eachBooster => {
             if (eachBooster.boosterPos.x < 0 || eachBooster.boosterPos.x > this.gameSize.width || eachBooster.boosterPos.y < 0 || eachBooster.boosterPos.y > this.gameSize.height) {
-                this.boosters.splice(eachBooster, 1)
+                this.boostersNuke.splice(eachBooster, 1)
 
             }
         })
@@ -204,17 +217,28 @@ const Game = {
             }
         })
     },
-    checkBoosterColision() {
-        this.boosters.forEach(booster => {
+    checkBoosterNukeColision() {
+        this.boostersNuke.forEach(booster => {
             if (this.car.carPos.x < booster.boosterPos.x + booster.boosterSize.width &&
                 this.car.carPos.x + this.car.carSize.width > booster.boosterPos.x &&
                 this.car.carPos.y < booster.boosterPos.y + booster.boosterSize.height &&
                 this.car.carSize.height + this.car.carPos.y > booster.boosterPos.y) {
 
-                console.log("oh yeah")
-                this.boosters.splice(booster, 1)
+                this.boostersNuke.splice(booster, 1)
                 this.car.score += this.cops.length
                 this.cops = []
+
+            }
+        })
+    },
+    checkBoosterWingColision() {
+        this.boosterWings.forEach(booster => {
+            if (this.car.carPos.x < booster.boosterPos.x + booster.boosterSize.width &&
+                this.car.carPos.x + this.car.carSize.width > booster.boosterPos.x &&
+                this.car.carPos.y < booster.boosterPos.y + booster.boosterSize.height &&
+                this.car.carSize.height + this.car.carPos.y > booster.boosterPos.y) {
+
+                this.boosterWings.splice(booster, 1)
                 this.car.planeMode = true
                 setTimeout(() => {
                     this.car.planeMode = false

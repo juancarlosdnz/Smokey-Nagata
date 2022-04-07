@@ -21,33 +21,38 @@ class Enemy {
     }
     carTracking(carCurrentX, carCurrentY) {
 
-        
-            if (carCurrentX > this.enemyPos.x && carCurrentY > this.enemyPos.y) {
-                this.enemyPos.x += 7
-                this.enemyPos.y += 7
-            } else if (carCurrentX > this.enemyPos.x && carCurrentY < this.enemyPos.y) {
-                this.enemyPos.x += 7
-                this.enemyPos.y -= 7
-            } else if (carCurrentX < this.enemyPos.x && carCurrentY > this.enemyPos.y) {
-                this.enemyPos.x -= 7
-                this.enemyPos.y += 7
-            } else if (carCurrentX < this.enemyPos.x && carCurrentY < this.enemyPos.y) {
-                this.enemyPos.x -= 7
-                this.enemyPos.y -= 7
-            } else if (carCurrentY == this.enemyPos.y && carCurrentX > this.enemyPos.x) {
-                this.enemyPos.x += 7
+            if(this.enemyPos.y>=Game.gameSize.height/2){
+                if (carCurrentX > this.enemyPos.x && carCurrentY > this.enemyPos.y) {
+                    this.enemyPos.x += 7
+                    this.enemyPos.y += 7
+                } else if (carCurrentX > this.enemyPos.x && carCurrentY < this.enemyPos.y) {
+                    this.enemyPos.x += 7
+                    this.enemyPos.y -= 7
+                } else if (carCurrentX < this.enemyPos.x && carCurrentY > this.enemyPos.y) {
+                    this.enemyPos.x -= 7
+                    this.enemyPos.y += 7
+                } else if (carCurrentX < this.enemyPos.x && carCurrentY < this.enemyPos.y) {
+                    this.enemyPos.x -= 7
+                    this.enemyPos.y -= 7
+                } else if (carCurrentY == this.enemyPos.y && carCurrentX > this.enemyPos.x) {
+                    this.enemyPos.x += 7
 
-            } else if (carCurrentY == this.enemyPos.y && carCurrentX < this.enemyPos.x) {
-                this.enemyPos.x -= 7
+                } else if (carCurrentY == this.enemyPos.y && carCurrentX < this.enemyPos.x) {
+                    this.enemyPos.x -= 7
 
-            } else if (carCurrentX == this.enemyPos.x && carCurrentY < this.enemyPos.y) {
-                this.enemyPos.y -= 7
-            } else if (carCurrentX == this.enemyPos.x && carCurrentY > this.enemyPos.y) {
-                this.enemyPos.y += 7
-            } else if (carCurrentX == this.enemyPos.x && carCurrentY == this.enemyPos.y) {
-                this.enemyPos.y += 0
-                this.enemyPos.x += 0
+                } else if (carCurrentX == this.enemyPos.x && carCurrentY < this.enemyPos.y) {
+                    this.enemyPos.y -= 7
+                } else if (carCurrentX == this.enemyPos.x && carCurrentY > this.enemyPos.y) {
+                    this.enemyPos.y += 7
+                } else if (carCurrentX == this.enemyPos.x && carCurrentY == this.enemyPos.y) {
+                    this.enemyPos.y += 0
+                    this.enemyPos.x += 0
+                } 
             }
+            else {
+                this.enemyPos.y += 2
+                }
+            
 
     }
 }
