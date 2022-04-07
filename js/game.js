@@ -16,7 +16,8 @@ const Game = {
     pigs: [],
     boosters: [],
     boolPig: false,
-    shootable:false,
+    shootable: false,
+    nagataDeath: false,
     //score: 0,
     //EL CHECK COLLISIONS LO COMPROBAMOS HERE .---------------------------------------------------------------------------------------
     init(canvasID) {
@@ -57,11 +58,16 @@ const Game = {
 
     gameOver() {
         clearInterval(this.intervalId)
+
+        const canvas = document.querySelector('#canvas')
+        const gameOver = document.querySelector('#game-over')
+        canvas.classList.add('hidden')
+        gameOver.classList.remove('hidden')
     },
-    createBooster(){
+    createBooster() {
         let positionX = [1050, 1200, this.gameSize.width + 100]
         let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
-        this.boosters.push(new Booster(this.ctx, randomPosX, 0,this.gameSize,this.gameSize.width,this.gameSize.height,60,30))
+        this.boosters.push(new Booster(this.ctx, randomPosX, 0, this.gameSize, this.gameSize.width, this.gameSize.height, 60, 30))
     },
 
     drawAll() {
@@ -70,16 +76,15 @@ const Game = {
         this.car.createScore()
         if (this.frameIndex % 10 == true) {
             this.shootable = true
-        }
-        else if(this.frameIndex % 5==0){
+        } else if (this.frameIndex % 5 == 0) {
             this.shootable = false
         }
         this.clearBoosterOutOfBounds()
         this.checkEnemyColision()
         this.checkPigOutOfBounds()
         this.checkBoosterColision()
-        if (this.frameIndex % 25 == 0) {
-         //this.createEnemy()
+        if (this.frameIndex % 50 == 0) {
+            this.createEnemy()
         }
 
         if (this.frameIndex % 100 == 0) {
@@ -115,7 +120,7 @@ const Game = {
         this.boosters.forEach(eachBooster => {
             if (eachBooster.boosterPos.x < 0 || eachBooster.boosterPos.x > this.gameSize.width || eachBooster.boosterPos.y < 0 || eachBooster.boosterPos.y > this.gameSize.height) {
                 this.boosters.splice(eachBooster, 1)
-                
+
             }
         })
     },
@@ -194,7 +199,7 @@ const Game = {
                 this.car.carPos.x + this.car.carSize.width > cop.enemyPos.x &&
                 this.car.carPos.y < cop.enemyPos.y + cop.enemySize.height &&
                 this.car.carSize.height + this.car.carPos.y > cop.enemyPos.y) {
-                
+                this.nagataDeath = true
                 this.gameOver()
             }
         })
@@ -205,15 +210,15 @@ const Game = {
                 this.car.carPos.x + this.car.carSize.width > booster.boosterPos.x &&
                 this.car.carPos.y < booster.boosterPos.y + booster.boosterSize.height &&
                 this.car.carSize.height + this.car.carPos.y > booster.boosterPos.y) {
-                
+
                 console.log("oh yeah")
                 this.boosters.splice(booster, 1)
-                this.car.score +=this.cops.length
+                this.car.score += this.cops.length
                 this.cops = []
-                this.car.planeMode =true
+                this.car.planeMode = true
                 setTimeout(() => {
-                    this.car.planeMode=false
-                    this.car.carPos.y=this.gameSize.height/1.8
+                    this.car.planeMode = false
+                    this.car.carPos.y = this.gameSize.height / 1.8
                 }, 5000);
 
             }

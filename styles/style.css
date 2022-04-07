@@ -8,12 +8,29 @@ body {
     background-position: center;
 }
 
+#game-over {
+    width: 800px;
+    height: 250px;
+    padding: 100px;
+    margin: 100px;
+    margin-left: 200px;
+    text-align: center;
+    font-family: monospace;
+    font-size: large;
+    opacity: .5;
+    background-color: rgb(132, 155, 132);
+}
+
 .inital-screen {
     padding-top: 200px;
 }
 
 .hidden {
     display: none
+}
+
+.show {
+    display: block;
 }
 
 .title {
@@ -28,6 +45,16 @@ body {
 }
 
 #start {
+    width: 100px;
+    height: 40px;
+    margin: 20px;
+    padding: 10px;
+    font-family: sans-serif;
+    color: aliceblue;
+    background-color: rgb(131, 55, 50);
+}
+
+#restart {
     width: 100px;
     height: 40px;
     margin: 20px;
