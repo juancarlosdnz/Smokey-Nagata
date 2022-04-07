@@ -1,4 +1,38 @@
-* {
+body {
     margin: 0;
     padding: 0;
+    background-image: url('../img/smokey.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #b14d4d;
+    background-position: center;
+}
+
+.inital-screen {
+    padding-top: 200px;
+}
+
+.hidden {
+    display: none
+}
+
+.title {
+    color: aliceblue;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    font-family: monospace;
+    font-size: large;
+    /* position: absolute;
+    padding-top: 200px; */
+}
+
+#start {
+    width: 100px;
+    height: 40px;
+    margin: 20px;
+    padding: 10px;
+    font-family: sans-serif;
+    color: aliceblue;
+    background-color: rgb(131, 55, 50);
 }
