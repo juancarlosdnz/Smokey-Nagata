@@ -79,7 +79,7 @@ const Game = {
         this.checkPigOutOfBounds()
         this.checkBoosterColision()
         if (this.frameIndex % 25 == 0) {
-         this.createEnemy()
+         //this.createEnemy()
         }
 
         if (this.frameIndex % 100 == 0) {
@@ -210,6 +210,11 @@ const Game = {
                 this.boosters.splice(booster, 1)
                 this.car.score +=this.cops.length
                 this.cops = []
+                this.car.planeMode =true
+                setTimeout(() => {
+                    this.car.planeMode=false
+                    this.car.carPos.y=this.gameSize.height/1.8
+                }, 5000);
 
             }
         })
