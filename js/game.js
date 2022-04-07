@@ -78,8 +78,8 @@ const Game = {
         this.clearBoosterOutOfBounds()
         this.checkEnemyColision()
         this.checkPigOutOfBounds()
-        if (this.frameIndex % 40 == 0) {
-            //this.createEnemy()
+        if (this.frameIndex % 25 == 0) {
+            this.createEnemy()
         }
 
         if (this.frameIndex % 100 == 0) {
