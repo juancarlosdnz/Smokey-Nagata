@@ -23,7 +23,6 @@ const Game = {
         this.canvasNode = document.querySelector(`#${canvasID}`)
         this.ctx = this.canvasNode.getContext('2d')
 
-
         this.setDimensions()
         this.createBackground()
         this.createCar()
@@ -78,8 +77,9 @@ const Game = {
         this.clearBoosterOutOfBounds()
         this.checkEnemyColision()
         this.checkPigOutOfBounds()
+        this.checkBoosterColision()
         if (this.frameIndex % 25 == 0) {
-            this.createEnemy()
+         this.createEnemy()
         }
 
         if (this.frameIndex % 100 == 0) {
@@ -196,6 +196,21 @@ const Game = {
                 this.car.carSize.height + this.car.carPos.y > cop.enemyPos.y) {
                 
                 this.gameOver()
+            }
+        })
+    },
+    checkBoosterColision() {
+        this.boosters.forEach(booster => {
+            if (this.car.carPos.x < booster.boosterPos.x + booster.boosterSize.width &&
+                this.car.carPos.x + this.car.carSize.width > booster.boosterPos.x &&
+                this.car.carPos.y < booster.boosterPos.y + booster.boosterSize.height &&
+                this.car.carSize.height + this.car.carPos.y > booster.boosterPos.y) {
+                
+                console.log("oh yeah")
+                this.boosters.splice(booster, 1)
+                this.car.score +=this.cops.length
+                this.cops = []
+
             }
         })
     },
