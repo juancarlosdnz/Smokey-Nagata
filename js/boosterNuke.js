@@ -17,6 +17,7 @@ class BoosterNuke {
         this.move()
     }
     move() {
-        this.boosterPos.y+=10
-     }
+        this.boosterPos.y += 10
+
+    }
 }
