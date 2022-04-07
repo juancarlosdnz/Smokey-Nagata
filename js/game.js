@@ -83,7 +83,7 @@ const Game = {
         this.checkEnemyColision()
         this.checkPigOutOfBounds()
         this.checkBoosterColision()
-        if (this.frameIndex % 50 == 0) {
+        if (this.frameIndex % 100 == 0) {
             this.createEnemy()
         }
 

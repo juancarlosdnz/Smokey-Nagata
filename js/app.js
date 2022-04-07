@@ -3,9 +3,15 @@ const gameOver = document.querySelector('#game-over')
 const canvas = document.querySelector('#canvas')
     //gameOver.classList.add('hidden')
 
+function backgroundSound() {
+
+}
+//audio.play()
+
 
 document.getElementById('start').onclick = () => {
-
+    let audio = new Audio("./audio/smokeytheme.mp3")
+    audio.play()
     Game.init('canvas')
     initialScreen.classList.add('hidden')
 }
