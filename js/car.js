@@ -33,7 +33,9 @@ class Car {
     }
     shotSound() {
         let audio = new Audio("./audio/shoot.mp3");
+        audio.volume = 0.1
         audio.play()
+        
     }
 
     setEventListeners() {
