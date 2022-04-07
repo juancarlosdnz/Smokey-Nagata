@@ -211,7 +211,8 @@ const Game = {
                 this.car.carPos.y < booster.boosterPos.y + booster.boosterSize.height &&
                 this.car.carSize.height + this.car.carPos.y > booster.boosterPos.y) {
 
-                console.log("oh yeah")
+                let audio = new Audio("./audio/helicopter.mp3")
+                audio.play()
                 this.boosters.splice(booster, 1)
                 this.car.score += this.cops.length
                 this.cops = []

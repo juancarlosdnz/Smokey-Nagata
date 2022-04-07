@@ -28,8 +28,12 @@ class Car {
         this.ctx.font = "50px Helvetica"
         this.ctx.fillStyle = "White"
         this.ctx.fillText(`COPS TRANSFORMED: ${this.score}`, 50, 100)
-        // console.log("este es en background " + this.score)
+            // console.log("este es en background " + this.score)
 
+    }
+    shotSound() {
+        let audio = new Audio("./audio/shoot.mp3");
+        audio.play()
     }
 
     setEventListeners() {
@@ -80,87 +84,102 @@ class Car {
 
                     if (event.code === 'KeyW') {
                         this.shootBulletUp()
+                        this.shotSound()
+
+
 
                     }
                     if (event.code === 'KeyS') {
 
                         this.shootBulletDown()
+                        this.shotSound()
+
                     }
                     if (event.code === 'KeyD') {
 
                         this.shootBulletRight()
+                        this.shotSound()
+
                     }
                     if (event.code === 'KeyA') {
 
                         this.shootBulletLeft()
+                        this.shotSound()
+
                     }
 
                 }
 
-            }
-            else if (this.planeMode == true) {
+            } else if (this.planeMode == true) {
 
+                this.imageInstance.src = './img/bebe.png'
+                if (event.code === 'ArrowUp') {
+
+                    if (this.carPos.y < 0) {
+                        return
+                    } else {
+                        this.moveUp()
+                    }
                     this.imageInstance.src = './img/bebe.png'
-                    if (event.code === 'ArrowUp') {
-
-                        if (this.carPos.y < 0) {
-                            return
-                        } else {
-                            this.moveUp()
-                        }
-                        this.imageInstance.src = './img/bebe.png'
-                        if (this.carPos.y < 0) {
-                            return
-                        } else {
-                            this.moveUp()
-                        }
-
-
-                    }
-                    if (event.code === 'ArrowDown') {
-                        if (this.carPos.y >= this.gameSize.height - this.carSize.height) {
-                            return
-                        } else {
-                            this.moveDown()
-                        }
+                    if (this.carPos.y < 0) {
+                        return
+                    } else {
+                        this.moveUp()
                     }
 
-                    if (event.code === 'ArrowLeft') {
-                        if (this.carPos.x < 5) {
-                            return
-                        } else {
-                            this.moveLeft()
-                        }
+
+                }
+                if (event.code === 'ArrowDown') {
+                    if (this.carPos.y >= this.gameSize.height - this.carSize.height) {
+                        return
+                    } else {
+                        this.moveDown()
                     }
-                    if (event.code === 'ArrowRight') {
+                }
 
-
-                        if (this.carPos.x >= this.gameSize.width - this.carSize.width) {
-                            return
-                        } else {
-                            this.moveRight()
-                        }
+                if (event.code === 'ArrowLeft') {
+                    if (this.carPos.x < 5) {
+                        return
+                    } else {
+                        this.moveLeft()
                     }
-                    if (this.shootable == true) {
+                }
+                if (event.code === 'ArrowRight') {
 
-                        if (event.code === 'KeyW') {
-                            this.shootBulletUp()
 
-                        }
-                        if (event.code === 'KeyS') {
+                    if (this.carPos.x >= this.gameSize.width - this.carSize.width) {
+                        return
+                    } else {
+                        this.moveRight()
+                    }
+                }
+                if (this.shootable == true) {
 
-                            this.shootBulletDown()
-                        }
-                        if (event.code === 'KeyD') {
-
-                            this.shootBulletRight()
-                        }
-                        if (event.code === 'KeyA') {
-
-                            this.shootBulletLeft()
-                        }
+                    if (event.code === 'KeyW') {
+                        this.shootBulletUp()
+                        this.shotSound()
 
                     }
+                    if (event.code === 'KeyS') {
+
+                        this.shootBulletDown()
+                        this.shotSound()
+
+                    }
+                    if (event.code === 'KeyD') {
+
+                        this.shootBulletRight()
+                        this.shotSound()
+
+                    }
+                    if (event.code === 'KeyA') {
+
+                        this.shootBulletLeft()
+                        this.shotSound()
+
+                    }
+
+                }
             }
         }
 
