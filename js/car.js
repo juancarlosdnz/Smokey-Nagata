@@ -12,7 +12,8 @@ class Car {
         this.allBullets = []
         this.imageInstance = undefined
         this.score = 0
-        this.shootable=shootable
+        this.shootable = shootable
+        this.planeMode = false
         this.init()
 
 
@@ -26,45 +27,57 @@ class Car {
     createScore() {
         this.ctx.font = "50px Helvetica"
         this.ctx.fillStyle = "White"
-        this.ctx.fillText(`Pigs Killed: ${this.score}`, 50, 100)
-            // console.log("este es en background " + this.score)
+        this.ctx.fillText(`COPS TRANSFORMED: ${this.score}`, 50, 100)
+        // console.log("este es en background " + this.score)
 
     }
 
     setEventListeners() {
         document.onkeyup = event => {
-            if (event.code === 'ArrowUp') {
-                if (this.carPos.y < this.gameSize.height/1.9) {
-                    return
-                } else {
-                    this.moveUp()
-                }
-            }
-            if (event.code === 'ArrowDown') {
-                if (this.carPos.y >= this.gameSize.height - this.carSize.height) {
-                    return
-                } else {
-                    this.moveDown()
-                }
-            }
-            if (event.code === 'ArrowLeft') {
-                if (this.carPos.x < 5) {
-                    return
-                } else {
-                    this.moveLeft()
-                }
-            }
-            if (event.code === 'ArrowRight') {
+
+            if (this.planeMode == false) {
+                this.imageInstance.src = './img/nagatacar.png'
+                if (event.code === 'ArrowUp') {
+
+                    if (this.carPos.y < this.gameSize.height / 1.9) {
+                        return
+                    } else {
+                        this.moveUp()
+                    }
+                    if (this.carPos.y < 0) {
+                        return
+                    } else {
+                        this.moveUp()
+                    }
 
 
-                if (this.carPos.x >= this.gameSize.width - this.carSize.width) {
-                    return
-                } else {
-                    this.moveRight()
                 }
-            }
-            if(this.shootable == true){
-                
+                if (event.code === 'ArrowDown') {
+                    if (this.carPos.y >= this.gameSize.height - this.carSize.height) {
+                        return
+                    } else {
+                        this.moveDown()
+                    }
+                }
+
+                if (event.code === 'ArrowLeft') {
+                    if (this.carPos.x < 5) {
+                        return
+                    } else {
+                        this.moveLeft()
+                    }
+                }
+                if (event.code === 'ArrowRight') {
+
+
+                    if (this.carPos.x >= this.gameSize.width - this.carSize.width) {
+                        return
+                    } else {
+                        this.moveRight()
+                    }
+                }
+                if (this.shootable == true) {
+
                     if (event.code === 'KeyW') {
                         this.shootBulletUp()
 
@@ -81,18 +94,80 @@ class Car {
 
                         this.shootBulletLeft()
                     }
-               
-            }
 
-         
+                }
+
+            }
+            else if (this.planeMode == true) {
+
+                    this.imageInstance.src = './img/bebe.png'
+                    if (event.code === 'ArrowUp') {
+
+                        if (this.carPos.y < 0) {
+                            return
+                        } else {
+                            this.moveUp()
+                        }
+                        this.imageInstance.src = './img/bebe.png'
+                        if (this.carPos.y < 0) {
+                            return
+                        } else {
+                            this.moveUp()
+                        }
+
+
+                    }
+                    if (event.code === 'ArrowDown') {
+                        if (this.carPos.y >= this.gameSize.height - this.carSize.height) {
+                            return
+                        } else {
+                            this.moveDown()
+                        }
+                    }
+
+                    if (event.code === 'ArrowLeft') {
+                        if (this.carPos.x < 5) {
+                            return
+                        } else {
+                            this.moveLeft()
+                        }
+                    }
+                    if (event.code === 'ArrowRight') {
+
+
+                        if (this.carPos.x >= this.gameSize.width - this.carSize.width) {
+                            return
+                        } else {
+                            this.moveRight()
+                        }
+                    }
+                    if (this.shootable == true) {
+
+                        if (event.code === 'KeyW') {
+                            this.shootBulletUp()
+
+                        }
+                        if (event.code === 'KeyS') {
+
+                            this.shootBulletDown()
+                        }
+                        if (event.code === 'KeyD') {
+
+                            this.shootBulletRight()
+                        }
+                        if (event.code === 'KeyA') {
+
+                            this.shootBulletLeft()
+                        }
+
+                    }
+            }
         }
 
     }
 
-
-
     drawCar(shootable) {
-        this.shootable=shootable
+        this.shootable = shootable
         this.ctx.drawImage(this.imageInstance, this.carPos.x, this.carPos.y, this.carSize.width, this.carSize.height)
         this.bulletsUp.forEach(bullet => bullet.drawBulletUp(this.setEventListeners()))
         this.allBullets.push(this.bulletsUp)
