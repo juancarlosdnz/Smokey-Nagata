@@ -20,6 +20,7 @@ const Game = {
     shootable: false,
     nagataDeath: false,
     spawnRate: 100,
+    imageLevelUp :undefined,
     init(canvasID) {
         this.canvasNode = document.querySelector(`#${canvasID}`)
         this.ctx = this.canvasNode.getContext('2d')
@@ -269,10 +270,10 @@ const Game = {
                     this.ctx.fillStyle = "White"
                     this.ctx.fillText(`WELCOME TO TOKYO`, this.gameSize.width/3.3, this.gameSize.height/2.5)
                 }
-                else if(this.car.score%4==0){
-                    this.ctx.font = "100px Helvetica"
-                    this.ctx.fillStyle = "White"
-                    this.ctx.fillText(`LEVEL UP!`, this.gameSize.width / 3.2, this.gameSize.height / 2.5)
+                else if(this.car.score%8==0){
+                    this.imageLevelUp = new Image()
+                    this.imageLevelUp.src = "./img/levelup.png"
+                    this.ctx.drawImage(this.imageLevelUp, this.gameSize.width/1.5, this.gameSize.height/6, 500,500)
                 }
                 
             }, 30)
