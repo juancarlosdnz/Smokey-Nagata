@@ -67,7 +67,7 @@ const Game = {
     createBoosterNuke() {
         let positionX = [300, 500, 800, 1050, 1200, this.gameSize.width - 40]
         let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
-        this.boostersNuke.push(new BoosterNuke(this.ctx, randomPosX, 0, this.gameSize, this.gameSize.width, this.gameSize.height, 60, 30))
+        this.boostersNuke.push(new BoosterNuke(this.ctx, randomPosX, 0, this.gameSize, this.gameSize.width, this.gameSize.height, 100, 110))
     },
     createBoosterWings() {
         let positionX = [300, 500, 800, 1050, 1200, this.gameSize.width - 40]
@@ -76,7 +76,7 @@ const Game = {
     },
     levelUp() {
         if (this.car.score % 4 == 0) {
-            this.spawnRate -= 20
+            this.spawnRate /= 2
 
         }
     },
@@ -99,15 +99,11 @@ const Game = {
             this.createEnemy()
         }
 
-        if (this.frameIndex % 200 == 0) {
+        if (this.car.score>12 && this.frameIndex % 200 == 0) {
             this.createBoosterNuke()
         }
-        if (this.car.score > 4 ) {
-
-             if (this.frameIndex % 300 == 0) {
-
+        if (this.car.score > 8 && this.frameIndex % 500 == 0) {
             this.createBoosterWings()
-        }
         }
        
         this.boosterWings.forEach((eachBooster) => {

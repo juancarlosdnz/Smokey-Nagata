@@ -10,7 +10,7 @@ class BoosterNuke {
     }
     init() {
         this.imageInstance = new Image()
-        this.imageInstance.src = "./img/Cigarette.png"
+        this.imageInstance.src = "./img/turbobomb.png"
     }
     drawB() {
         this.ctx.drawImage(this.imageInstance, this.boosterPos.x, this.boosterPos.y, this.boosterSize.width, this.boosterSize.height)
