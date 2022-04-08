@@ -78,7 +78,7 @@ const Game = {
 
     drawAll() {
         this.background.drawBackground()
-        this.car.drawCar(this.shootable)
+        this.car.drawCar(this.shootable,this.frameIndex)
         this.car.createScore()
         if (this.frameIndex % 10 == true) {
             this.shootable = true

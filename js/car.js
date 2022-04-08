@@ -21,6 +21,10 @@ class Car {
     init() {
         this.imageInstance = new Image()
         this.imageInstance.src = "./img/nagatacar.png"
+        this.imageInstanceHeli = new Image()
+        this.imageInstanceHeli.src = "./img/helicopter.png"
+        this.imageInstanceHeli.frames = 4
+        this.imageInstanceHeli.framesIndex=0
         this.setEventListeners()
     }
 
@@ -42,7 +46,6 @@ class Car {
         document.onkeyup = event => {
 
             if (this.planeMode == false) {
-                this.imageInstance.src = './img/nagatacar.png'
                 if (event.code === 'ArrowUp') {
 
                     if (this.carPos.y < this.gameSize.height / 1.7) {
@@ -114,7 +117,6 @@ class Car {
 
             } else if (this.planeMode == true) {
 
-                this.imageInstance.src = './img/bebe.png'
                 if (event.code === 'ArrowUp') {
 
                     if (this.carPos.y < 0) {
@@ -122,7 +124,6 @@ class Car {
                     } else {
                         this.moveUp()
                     }
-                    this.imageInstance.src = './img/bebe.png'
                     if (this.carPos.y < 0) {
                         return
                     } else {
@@ -186,10 +187,34 @@ class Car {
         }
 
     }
-
-    drawCar(shootable) {
+    animate(framesCounter) {
+        if (framesCounter % 5 == 0) {
+            this.imageInstanceHeli.framesIndex++;
+        }
+        if (this.imageInstanceHeli.framesIndex >= this.imageInstanceHeli.frames) {
+            this.imageInstanceHeli.framesIndex = 0;
+        }
+    }
+    drawCar(shootable,framesCounter) {
         this.shootable = shootable
-        this.ctx.drawImage(this.imageInstance, this.carPos.x, this.carPos.y, this.carSize.width, this.carSize.height)
+        if (this.planeMode==false) {
+            this.ctx.drawImage(this.imageInstance, this.carPos.x, this.carPos.y, this.carSize.width, this.carSize.height)
+
+        }else if(this.planeMode ==true){
+            this.ctx.drawImage(
+                this.imageInstanceHeli,
+                this.imageInstanceHeli.framesIndex * (this.imageInstanceHeli.width / this.imageInstanceHeli.frames),
+                0,
+                this.imageInstanceHeli.width / this.imageInstanceHeli.frames,
+                this.imageInstanceHeli.height,
+                this.carPos.x,
+                this.carPos.y,
+                200,
+                120
+            )
+
+            this.animate(framesCounter)
+        }
         this.bulletsUp.forEach(bullet => bullet.drawBulletUp(this.setEventListeners()))
         this.allBullets.push(this.bulletsUp)
         this.bulletsDown.forEach(bullet => bullet.drawBulletDown(this.setEventListeners()))
