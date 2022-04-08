@@ -247,7 +247,9 @@ const Game = {
                 this.car.carPos.x + this.car.carSize.width > booster.boosterPos.x &&
                 this.car.carPos.y < booster.boosterPos.y + booster.boosterSize.height &&
                 this.car.carSize.height + this.car.carPos.y > booster.boosterPos.y) {
-
+                let audio = new Audio("./audio/helicoperhelicopter.mp3");
+                // audio.volume = 0.1
+                audio.play()
                 this.boosterWings.splice(booster, 1)
                 this.car.planeMode = true
                 setTimeout(() => {

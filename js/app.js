@@ -11,6 +11,8 @@ function backgroundSound() {
 
 document.getElementById('start').onclick = () => {
     let audio = new Audio("./audio/smokeytheme.mp3")
+    audio.volume = 0.1
+
     audio.play()
     Game.init('canvas')
     initialScreen.classList.add('hidden')
