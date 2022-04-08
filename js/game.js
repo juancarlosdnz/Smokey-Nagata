@@ -73,7 +73,7 @@ const Game = {
     createBoosterWings() {
         let positionX = [300, 500, 800, 1050, 1200, this.gameSize.width - 40]
         let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
-        this.boosterWings.push(new BoosterWing(this.ctx, randomPosX, 0, this.gameSize, this.gameSize.width, this.gameSize.height, 90, 60))
+        this.boosterWings.push(new BoosterWing(this.ctx, randomPosX, 0, this.gameSize, this.gameSize.width, this.gameSize.height, 100, 110))
     },
     levelUp() {
         if (this.car.score % 4 == 0) {
