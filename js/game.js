@@ -99,10 +99,10 @@ const Game = {
             this.createEnemy()
         }
 
-        if (this.car.score>12 && this.frameIndex % 200 == 0) {
+        if (this.car.score>12 && this.frameIndex % 150 == 0) {
             this.createBoosterNuke()
         }
-        if (this.car.score > 8 && this.frameIndex % 500 == 0) {
+        if (this.car.score > 8 && this.frameIndex % 300 == 0) {
             this.createBoosterWings()
         }
        
@@ -229,7 +229,8 @@ const Game = {
                 this.car.carPos.x + this.car.carSize.width > booster.boosterPos.x &&
                 this.car.carPos.y < booster.boosterPos.y + booster.boosterSize.height &&
                 this.car.carSize.height + this.car.carPos.y > booster.boosterPos.y) {
-
+                let turbobomb = new Audio("./audio/turbobomb.mp3")
+                turbobomb.play()
                 this.boostersNuke.splice(booster, 1)
                 this.car.score += this.cops.length
                 this.cops = []
