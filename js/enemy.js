@@ -7,6 +7,7 @@ class Enemy {
         this.carPosY = carPosY
         this.imageInstance = undefined
         this.init()
+        this.vel=5
     }
     init() {
         this.imageInstance = new Image()
@@ -23,27 +24,27 @@ class Enemy {
 
             if(this.enemyPos.y>=Game.gameSize.height/2){
                 if (carCurrentX > this.enemyPos.x && carCurrentY > this.enemyPos.y) {
-                    this.enemyPos.x += 7
-                    this.enemyPos.y += 7
+                    this.enemyPos.x += this.vel
+                    this.enemyPos.y += this.vel
                 } else if (carCurrentX > this.enemyPos.x && carCurrentY < this.enemyPos.y) {
-                    this.enemyPos.x += 7
-                    this.enemyPos.y -= 7
+                    this.enemyPos.x += this.vel
+                    this.enemyPos.y -= this.vel
                 } else if (carCurrentX < this.enemyPos.x && carCurrentY > this.enemyPos.y) {
-                    this.enemyPos.x -= 7
-                    this.enemyPos.y += 7
+                    this.enemyPos.x -= this.vel
+                    this.enemyPos.y += this.vel
                 } else if (carCurrentX < this.enemyPos.x && carCurrentY < this.enemyPos.y) {
-                    this.enemyPos.x -= 7
-                    this.enemyPos.y -= 7
+                    this.enemyPos.x -= this.vel
+                    this.enemyPos.y -= this.vel
                 } else if (carCurrentY == this.enemyPos.y && carCurrentX > this.enemyPos.x) {
-                    this.enemyPos.x += 7
+                    this.enemyPos.x += this.vel
 
                 } else if (carCurrentY == this.enemyPos.y && carCurrentX < this.enemyPos.x) {
-                    this.enemyPos.x -= 7
+                    this.enemyPos.x -= this.vel
 
                 } else if (carCurrentX == this.enemyPos.x && carCurrentY < this.enemyPos.y) {
-                    this.enemyPos.y -= 7
+                    this.enemyPos.y -= this.vel
                 } else if (carCurrentX == this.enemyPos.x && carCurrentY > this.enemyPos.y) {
-                    this.enemyPos.y += 7
+                    this.enemyPos.y += this.vel
                 } else if (carCurrentX == this.enemyPos.x && carCurrentY == this.enemyPos.y) {
                     this.enemyPos.y += 0
                     this.enemyPos.x += 0

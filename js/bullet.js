@@ -13,27 +13,19 @@ class Bullet {
     init() {
         this.imageInstance = new Image()
         this.imageInstance.src = "./img/Nos.png"
-
     }
 
     drawBulletUp() {
         this.ctx.drawImage(this.imageInstance, this.bulletPos.x, this.bulletPos.y, this.bulletSize.width, this.bulletSize.height)
-
     }
     drawBulletDown() {
         this.ctx.drawImage(this.imageInstance, this.bulletPos.x, this.bulletPos.y, this.bulletSize.width, this.bulletSize.height)
-
-
     }
     drawBulletLeft() {
         this.ctx.drawImage(this.imageInstance, this.bulletPos.x, this.bulletPos.y, this.bulletSize.width, this.bulletSize.height)
-
-
     }
     drawBulletRight() {
         this.ctx.drawImage(this.imageInstance, this.bulletPos.x, this.bulletPos.y, this.bulletSize.width, this.bulletSize.height)
-
-
     }
 
     moveUp() {

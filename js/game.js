@@ -15,12 +15,11 @@ const Game = {
     intervalId: undefined,
     pigs: [],
     boostersNuke: [],
-    boosterWings:[],
+    boosterWings: [],
     boolPig: false,
     shootable: false,
     nagataDeath: false,
-    //score: 0,
-    //EL CHECK COLLISIONS LO COMPROBAMOS HERE .---------------------------------------------------------------------------------------
+    spawnRate: 100,
     init(canvasID) {
         this.canvasNode = document.querySelector(`#${canvasID}`)
         this.ctx = this.canvasNode.getContext('2d')
@@ -66,19 +65,24 @@ const Game = {
         gameOver.classList.remove('hidden')
     },
     createBoosterNuke() {
-        let positionX = [300, 500, 800, 1050, 1200, this.gameSize.width-40]
+        let positionX = [300, 500, 800, 1050, 1200, this.gameSize.width - 40]
         let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
         this.boostersNuke.push(new BoosterNuke(this.ctx, randomPosX, 0, this.gameSize, this.gameSize.width, this.gameSize.height, 60, 30))
     },
     createBoosterWings() {
-        let positionX = [300,500,800,1050, 1200, this.gameSize.width-40]
+        let positionX = [300, 500, 800, 1050, 1200, this.gameSize.width - 40]
         let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
         this.boosterWings.push(new BoosterWing(this.ctx, randomPosX, 0, this.gameSize, this.gameSize.width, this.gameSize.height, 90, 60))
     },
+    levelUp() {
+        if (this.car.score % 4 == 0) {
+            this.spawnRate -= 20
 
+        }
+    },
     drawAll() {
         this.background.drawBackground()
-        this.car.drawCar(this.shootable,this.frameIndex)
+        this.car.drawCar(this.shootable, this.frameIndex)
         this.car.createScore()
         if (this.frameIndex % 10 == true) {
             this.shootable = true
@@ -90,16 +94,22 @@ const Game = {
         this.checkPigOutOfBounds()
         this.checkBoosterNukeColision()
         this.checkBoosterWingColision()
-        if (this.frameIndex % 100 == 0) {
+        if (this.frameIndex % this.spawnRate == 0) {
+            console.log(this.spawnRate)
             this.createEnemy()
         }
 
         if (this.frameIndex % 200 == 0) {
             this.createBoosterNuke()
         }
-        if (this.frameIndex % 100 == 0) {
+        if (this.car.score > 4 ) {
+
+             if (this.frameIndex % 300 == 0) {
+
             this.createBoosterWings()
         }
+        }
+       
         this.boosterWings.forEach((eachBooster) => {
             eachBooster.drawB()
         })
@@ -122,13 +132,9 @@ const Game = {
         let audio = new Audio("./audio/pigScream.mp3");
         audio.play()
     },
-
-
-
     clearAll() {
         this.ctx.clearRect(0, 0, this.gameSize.w, this.gameSize.h)
     },
-
     clearBoosterOutOfBounds() {
         this.boostersNuke.forEach(eachBooster => {
             if (eachBooster.boosterPos.x < 0 || eachBooster.boosterPos.x > this.gameSize.width || eachBooster.boosterPos.y < 0 || eachBooster.boosterPos.y > this.gameSize.height) {
@@ -158,6 +164,7 @@ const Game = {
                     this.car.bulletsUp.splice(bullet, 1)
                     this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 100, 100))
                     this.scoreCounter()
+                    this.levelUp()
                     this.pigScream()
                 }
             })
@@ -172,6 +179,7 @@ const Game = {
                     this.car.bulletsDown.splice(bullet, 1)
                     this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 100, 100))
                     this.scoreCounter()
+                    this.levelUp()
                     this.pigScream()
                 }
             })
@@ -186,6 +194,7 @@ const Game = {
                     this.car.bulletsRight.splice(bullet, 1)
                     this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 100, 100))
                     this.scoreCounter()
+                    this.levelUp()
                     this.pigScream()
                 }
             })
@@ -200,6 +209,7 @@ const Game = {
                     this.car.bulletsLeft.splice(bullet, 1)
                     this.pigs.push(new Pig(this.ctx, cop.enemyPos.x, cop.enemyPos.y, this.gameSize, this.gameSize.width, this.gameSize.height, 100, 100))
                     this.scoreCounter()
+                    this.levelUp()
                     this.pigScream()
                 }
             })
@@ -255,6 +265,17 @@ const Game = {
             setInterval(() => {
                 this.clearAll()
                 this.drawAll()
+                if(this.car.score==0){
+                    this.ctx.font = "50px Helvetica"
+                    this.ctx.fillStyle = "White"
+                    this.ctx.fillText(`WELCOME TO TOKYO`, this.gameSize.width/3.3, this.gameSize.height/2.5)
+                }
+                else if(this.car.score%4==0){
+                    this.ctx.font = "100px Helvetica"
+                    this.ctx.fillStyle = "White"
+                    this.ctx.fillText(`LEVEL UP!`, this.gameSize.width / 3.2, this.gameSize.height / 2.5)
+                }
+                
             }, 30)
     },
 }

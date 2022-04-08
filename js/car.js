@@ -15,8 +15,6 @@ class Car {
         this.shootable = shootable
         this.planeMode = false
         this.init()
-
-
     }
     init() {
         this.imageInstance = new Image()
