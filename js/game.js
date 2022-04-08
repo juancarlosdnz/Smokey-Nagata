@@ -15,7 +15,7 @@ const Game = {
     intervalId: undefined,
     pigs: [],
     boostersNuke: [],
-    boosterWings:[],
+    boosterWings: [],
     boolPig: false,
     shootable: false,
     nagataDeath: false,
@@ -66,19 +66,19 @@ const Game = {
         gameOver.classList.remove('hidden')
     },
     createBoosterNuke() {
-        let positionX = [300, 500, 800, 1050, 1200, this.gameSize.width-40]
+        let positionX = [300, 500, 800, 1050, 1200, this.gameSize.width - 40]
         let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
         this.boostersNuke.push(new BoosterNuke(this.ctx, randomPosX, 0, this.gameSize, this.gameSize.width, this.gameSize.height, 60, 30))
     },
     createBoosterWings() {
-        let positionX = [300,500,800,1050, 1200, this.gameSize.width-40]
+        let positionX = [300, 500, 800, 1050, 1200, this.gameSize.width - 40]
         let randomPosX = positionX[Math.floor(Math.random() * positionX.length)]
         this.boosterWings.push(new BoosterWing(this.ctx, randomPosX, 0, this.gameSize, this.gameSize.width, this.gameSize.height, 90, 60))
     },
 
     drawAll() {
         this.background.drawBackground()
-        this.car.drawCar(this.shootable,this.frameIndex)
+        this.car.drawCar(this.shootable, this.frameIndex)
         this.car.createScore()
         if (this.frameIndex % 10 == true) {
             this.shootable = true
@@ -237,7 +237,9 @@ const Game = {
                 this.car.carPos.x + this.car.carSize.width > booster.boosterPos.x &&
                 this.car.carPos.y < booster.boosterPos.y + booster.boosterSize.height &&
                 this.car.carSize.height + this.car.carPos.y > booster.boosterPos.y) {
-
+                let audio = new Audio("./audio/helicoperhelicopter.mp3");
+                // audio.volume = 0.1
+                audio.play()
                 this.boosterWings.splice(booster, 1)
                 this.car.planeMode = true
                 setTimeout(() => {
