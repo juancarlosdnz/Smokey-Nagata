@@ -25,9 +25,9 @@ class Car {
     }
 
     createScore() {
-        this.ctx.font = "50px Helvetica"
+        this.ctx.font = "40px Helvetica"
         this.ctx.fillStyle = "White"
-        this.ctx.fillText(`COPS TRANSFORMED: ${this.score}`, 50, 100)
+        this.ctx.fillText(`Smoked Cops : ${this.score}`, 50, 100)
             // console.log("este es en background " + this.score)
 
     }
@@ -35,7 +35,7 @@ class Car {
         let audio = new Audio("./audio/shoot.mp3");
         audio.volume = 0.1
         audio.play()
-        
+
     }
 
     setEventListeners() {
